@@ -7,34 +7,126 @@ const Feedback = () => {
   const [selectedFeedback, setSelectedFeedback] = useState(null);
 
   useEffect(() => {
+    const mockData = [
+      {
+        id: 'mock-1',
+        recipeName: 'Hidden-Veggie Mac & Cheese',
+        date: 'Yesterday, 6:30 PM',
+        status: 'Follow-up Active',
+        personas: [
+          { name: 'Aden', status: 'Submitted', rating: '😍', note: 'I didn\'t even taste the cauliflower.' },
+          { name: 'Maya', status: 'Pending', rating: null, note: '' },
+          { name: 'David', status: 'Submitted', rating: '👍', note: 'Pretty good for a healthy version.' }
+        ]
+      },
+      {
+        id: 'mock-2',
+        recipeName: 'Spicy Thai Peanut Noodles',
+        date: 'Sep 18, 7:15 PM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '😍', note: 'Loved the sunflower butter substitution.' },
+          { name: 'David', status: 'Submitted', rating: '😐', note: 'Needs way more chicken to hit my macros.' },
+          { name: 'Aden', status: 'Submitted', rating: '👍', note: 'Spicy but good.' }
+        ]
+      },
+      {
+        id: 'mock-3',
+        recipeName: 'Grilled Lemon Herb Salmon',
+        date: 'Sep 15, 6:45 PM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '😍', note: 'Perfectly cooked, felt so light.' },
+          { name: 'David', status: 'Submitted', rating: '😍', note: 'Great protein punch, clean eating.' },
+          { name: 'Aden', status: 'Submitted', rating: '🤢', note: 'I still hate fish. Took one bite.' }
+        ]
+      },
+      {
+        id: 'mock-4',
+        recipeName: 'Smoked Brisket Tacos',
+        date: 'Sep 10, 7:30 PM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '👍', note: 'A bit heavy for a weekday, but tasty.' },
+          { name: 'David', status: 'Submitted', rating: '😍', note: 'Incredible smoke ring, exactly what I craved.' },
+          { name: 'Aden', status: 'Submitted', rating: '😍', note: 'Ate 5 of them. Epic dinner.' }
+        ]
+      },
+      {
+        id: 'mock-5',
+        recipeName: 'Matcha Protein Pancakes',
+        date: 'Sep 08, 9:00 AM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '😍', note: 'Best Sunday morning breakfast.' },
+          { name: 'David', status: 'Submitted', rating: '🤢', note: 'Taste like grass. Hard pass. Sticking to bacon.' },
+          { name: 'Aden', status: 'Submitted', rating: '😐', note: 'Weird color but they tasted okay with syrup.' }
+        ]
+      },
+      {
+        id: 'mock-6',
+        recipeName: 'High-Protein Chicken Quinoa Bowl',
+        date: 'Sep 05, 6:15 PM',
+        status: 'Follow-up Active',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '👍', note: 'Good, but could use more dressing.' },
+          { name: 'David', status: 'Submitted', rating: '😍', note: 'Perfect post-run meal. Hit all macros.' },
+          { name: 'Aden', status: 'Pending', rating: null, note: '' }
+        ]
+      },
+      {
+        id: 'mock-7',
+        recipeName: 'Classic Beef Chili',
+        date: 'Sep 02, 7:00 PM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '😐', note: 'A little too heavy for a weeknight.' },
+          { name: 'David', status: 'Submitted', rating: '😍', note: 'Classic comfort food. Love it.' },
+          { name: 'Aden', status: 'Submitted', rating: '😍', note: 'Awesome with extra cheese on top.' }
+        ]
+      },
+      {
+        id: 'mock-8',
+        recipeName: 'Avocado Toast with Poached Eggs',
+        date: 'Aug 29, 8:30 AM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '😍', note: 'My absolute favorite breakfast.' },
+          { name: 'David', status: 'Submitted', rating: '👍', note: 'Good, but needed 4 eggs to be full.' },
+          { name: 'Aden', status: 'Submitted', rating: '🤢', note: 'I don\'t get why people like avocado.' }
+        ]
+      },
+      {
+        id: 'mock-9',
+        recipeName: 'Sweet Potato Black Bean Enchiladas',
+        date: 'Aug 25, 6:45 PM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '😍', note: 'Great vegetarian option, very filling.' },
+          { name: 'David', status: 'Submitted', rating: '😐', note: 'Tasted fine but I missed having meat.' },
+          { name: 'Aden', status: 'Submitted', rating: '🤢', note: 'Sweet potatoes do not belong in enchiladas.' }
+        ]
+      },
+      {
+        id: 'mock-10',
+        recipeName: 'Crispy Air-Fried Chicken Parm',
+        date: 'Aug 21, 7:15 PM',
+        status: '100% Complete',
+        personas: [
+          { name: 'Maya', status: 'Submitted', rating: '👍', note: 'Nice low-oil alternative.' },
+          { name: 'David', status: 'Submitted', rating: '😍', note: 'Great macros, still crispy.' },
+          { name: 'Aden', status: 'Submitted', rating: '😍', note: 'Finally, real food!' }
+        ]
+      }
+    ];
+
     const rawFeedback = localStorage.getItem('honestiFeedback');
     if (rawFeedback) {
-      setFeedbacks(JSON.parse(rawFeedback));
+      const localData = JSON.parse(rawFeedback);
+      // Combine the live local storage data (from cooking a meal just now) with the 10 mock records
+      setFeedbacks([...localData, ...mockData]);
     } else {
-      // Mock data so the investor sees something immediately if nothing is logged yet
-      setFeedbacks([
-        {
-          id: 1,
-          recipeName: 'Hidden-Veggie Mac & Cheese',
-          date: 'Yesterday, 6:30 PM',
-          status: 'Follow-up Active',
-          personas: [
-            { name: 'Aden', status: 'Submitted', rating: '😍', note: '' },
-            { name: 'Sophia', status: 'Pending', rating: null, note: '' },
-            { name: 'Oliver', status: 'Submitted', rating: '😍', note: 'Ate the whole bowl!' }
-          ]
-        },
-        {
-          id: 2,
-          recipeName: 'Spicy Thai Peanut Noodles',
-          date: 'Sep 18, 7:15 PM',
-          status: '100% Complete',
-          personas: [
-            { name: 'Maya', status: 'Submitted', rating: '😍', note: 'Loved the sunflower butter.' },
-            { name: 'David', status: 'Submitted', rating: '😐', note: 'Not enough protein for me.' }
-          ]
-        }
-      ]);
+      setFeedbacks(mockData);
     }
   }, []);
 

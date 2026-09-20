@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Step1Account from '../components/onboarding/Step1Account';
 import Step2Household from '../components/onboarding/Step2Household';
-import Step3Kitchen from '../components/onboarding/Step3Kitchen';
 import Logo from '../components/Logo';
 
 const Onboarding = () => {
@@ -24,7 +23,7 @@ const Onboarding = () => {
   };
 
   const nextStep = () => {
-    if (step < 3) {
+    if (step < 2) {
       setStep(step + 1);
       if (scrollRef.current) scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -68,14 +67,12 @@ const Onboarding = () => {
             <h3 className="text-center text-[11px] font-bold text-gray-400 mb-3 tracking-wide uppercase">
               {step === 1 && "Step 01: Create Account"}
               {step === 2 && "Step 02: Household Context"}
-              {step === 3 && "Step 03: Kitchen Check"}
             </h3>
             
             {/* Progress Bar */}
             <div className="flex gap-2 w-full max-w-[260px] mx-auto">
               <div className={`h-1 flex-1 rounded-full transition-colors duration-500 ${step >= 1 ? 'bg-[#0077ff]' : 'bg-white/10'}`}></div>
               <div className={`h-1 flex-1 rounded-full transition-colors duration-500 ${step >= 2 ? 'bg-[#0077ff]' : 'bg-white/10'}`}></div>
-              <div className={`h-1 flex-1 rounded-full transition-colors duration-500 ${step >= 3 ? 'bg-[#0077ff]' : 'bg-white/10'}`}></div>
             </div>
           </div>
 
@@ -83,7 +80,6 @@ const Onboarding = () => {
           <div className="relative">
             {step === 1 && <Step1Account formData={formData} updateData={updateData} nextStep={nextStep} />}
             {step === 2 && <Step2Household formData={formData} updateData={updateData} nextStep={nextStep} prevStep={prevStep} />}
-            {step === 3 && <Step3Kitchen formData={formData} updateData={updateData} nextStep={nextStep} prevStep={prevStep} />}
           </div>
 
         </motion.div>

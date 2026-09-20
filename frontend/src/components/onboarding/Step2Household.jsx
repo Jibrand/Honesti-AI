@@ -89,33 +89,6 @@ const Step2Household = ({ formData, updateData, nextStep, prevStep }) => {
           </div>
         </div>
 
-        <div>
-          <div className="flex items-center gap-1.5 mb-3">
-            <label className="block text-[13px] font-bold text-gray-300">Dietary Needs & Constraints</label>
-            <FiHelpCircle className="text-gray-500 text-[11px] cursor-help" />
-          </div>
-          
-          <div className="flex flex-wrap gap-2 mb-3.5">
-            {dietaryOptions.map(opt => {
-              const isSelected = (formData.dietary || []).includes(opt.id);
-              const baseClass = isSelected ? opt.color : 'bg-[#0b0f19]/50 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white';
-              return (
-                <button
-                  key={opt.id}
-                  onClick={() => toggleDietary(opt.id)}
-                  className={`border rounded-lg px-3 py-1.5 text-[11px] font-semibold transition-all shadow-sm cursor-pointer ${baseClass}`}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="flex items-start gap-2 text-[10px] text-gray-400 leading-relaxed bg-[#0b0f19]/30 p-2.5 rounded-lg border border-white/5">
-            <FiHelpCircle className="text-gray-500 mt-0.5 shrink-0 text-sm" />
-            <p>Honesti adapts to these constraints over time. Based on your household size, recipe portions will also automatically adjust.</p>
-          </div>
-        </div>
       </div>
 
       <div className="flex gap-2 mt-8">
@@ -123,7 +96,7 @@ const Step2Household = ({ formData, updateData, nextStep, prevStep }) => {
           onClick={handleNext}
           className="flex-1 bg-[#0077ff] hover:bg-blue-600 text-white rounded-lg py-3 text-[14px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer"
         >
-          Save & Continue <span className="font-normal opacity-80 text-[11px] tracking-wide ml-1">TO NEXT STEP</span>
+          Complete Setup <span className="font-normal opacity-80 text-[11px] tracking-wide ml-1">TO DASHBOARD</span>
         </button>
         <button 
           onClick={prevStep}
