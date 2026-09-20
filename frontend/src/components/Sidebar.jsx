@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FiHome, FiMessageSquare, FiCoffee, FiShoppingBag, FiGlobe, FiUsers, FiSettings, FiMenu, FiX, FiUser, FiLogOut } from 'react-icons/fi';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { FiHome, FiMessageSquare, FiCoffee, FiShoppingBag, FiGlobe, FiUsers, FiSettings, FiMenu, FiX, FiUser, FiLogOut, FiStar } from 'react-icons/fi';
 import { MdChildCare, MdYard } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isLocked, setIsLocked] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -24,14 +25,13 @@ const Sidebar = () => {
 
   const navItems = [
     { name: 'Home', path: '/home', icon: <FiHome /> },
-    { name: 'Talk to Honesti', path: '/chat', icon: <FiMessageSquare /> },
-    { name: 'Kitchen', path: '/kitchen', icon: <FiCoffee /> },
+    { name: 'Personas', path: '/household', icon: <FiUsers /> },
     { name: 'Pantry', path: '/pantry', icon: <FiShoppingBag /> },
     { name: 'Global Cookbook', path: '/cookbook', icon: <FiGlobe /> },
-    { name: 'HonestGarden', path: '/garden', icon: <MdYard /> },
-    { name: 'Little Chefs', path: '/little-chefs', icon: <MdChildCare /> },
-    { name: 'My Household', path: '/household', icon: <FiUsers /> },
-    { name: 'Settings', path: '/settings', icon: <FiSettings /> },
+    { name: 'Feedback Hub', path: '/feedback', icon: <FiStar /> },
+    // { name: 'HonestGarden', path: '/garden', icon: <MdYard /> },
+    // { name: 'Little Chefs', path: '/little-chefs', icon: <MdChildCare /> },
+    // { name: 'Settings', path: '/settings', icon: <FiSettings /> },
   ];
 
   const showFullSidebar = isLocked || isHovered;
@@ -110,11 +110,11 @@ const Sidebar = () => {
               exit={{ opacity: 0, y: 10 }}
               className="absolute bottom-full left-4 right-4 mb-2 bg-[#0b0f19] border border-white/10 rounded-xl shadow-2xl overflow-hidden py-1 z-50"
             >
-              <button className="w-full px-4 py-2.5 text-left text-xs font-medium text-gray-300 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors">
+              <button onClick={() => { setIsProfileOpen(false); navigate('/profile'); }} className="cursor-pointer w-full px-4 py-2.5 text-left text-xs font-medium text-gray-300 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-colors">
                 <FiUser className="text-gray-400" />
                 View Profile
               </button>
-              <button className="w-full px-4 py-2.5 text-left text-xs font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 flex items-center gap-2 transition-colors">
+              <button onClick={() => navigate('/login')} className="cursor-pointer w-full px-4 py-2.5 text-left text-xs font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 flex items-center gap-2 transition-colors">
                 <FiLogOut />
                 Log out
               </button>

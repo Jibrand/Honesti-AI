@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiArrowUp, FiAlertCircle, FiCheckCircle, FiInfo } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const quotes = [
   "It's not just about what's on your plate, but who's around it. — Honesti",
@@ -16,6 +17,7 @@ const initialNotifications = [
 ];
 
 const upcomingNotifications = [
+  { id: 100, type: 'warning', title: 'Action Required', message: 'Please complete the persona details for your household members to personalize recipes.', time: 'Just now', icon: <FiAlertCircle /> },
   { id: 101, type: 'info', title: 'Smart Oven Sync', message: 'Preheating started for tonight\'s dinner plan.', time: 'Just now', icon: <FiInfo /> },
   { id: 102, type: 'success', title: 'Grocery Delivery', message: 'Fresh basil has been delivered to your door.', time: 'Just now', icon: <FiCheckCircle /> },
   { id: 103, type: 'warning', title: 'Low Stock', message: 'Running dangerously low on Olive Oil.', time: 'Just now', icon: <FiAlertCircle /> },
@@ -62,6 +64,7 @@ const playNotificationSound = () => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [greeting, setGreeting] = useState('');
   
@@ -92,7 +95,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setQuoteIndex((prev) => (prev + 1) % quotes.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -152,7 +155,10 @@ const Home = () => {
               <p className="text-[11px] text-gray-200 italic leading-snug drop-shadow-md font-medium">
                 {quotes[quoteIndex].split('—')[0]}
                 <br />
-                <span className="text-blue-400 font-semibold not-italic text-[10px] block mt-1">— Honesti</span>
+                <span className="text-blue-400 font-semibold not-italic text-[10px] flex items-center gap-1.5 mt-1">
+                  <img src="/logo/circle_avatar_logo.png" className="w-5.5 h-5.5 rounded-full shadow-sm" alt="" />
+                  — Honesti
+                </span>
               </p>
             </motion.div>
           </AnimatePresence>
@@ -232,7 +238,7 @@ const Home = () => {
             {/* Massive breathing background glow to draw the eye */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-gradient-to-r from-[#0077ff]/30 to-[#ff6600]/30 rounded-full blur-[20px] animate-pulse pointer-events-none"></div>
 
-            <button className="relative group p-[2px] rounded-full overflow-hidden active:scale-95 transition-all shadow-[0_0_25px_rgba(0,119,255,0.5)] hover:shadow-[0_0_40px_rgba(255,102,0,0.7)] z-10 cursor-pointer">
+            <button onClick={() => navigate('/chat')} className="relative group p-[2px] rounded-full overflow-hidden active:scale-95 transition-all shadow-[0_0_25px_rgba(0,119,255,0.5)] hover:shadow-[0_0_40px_rgba(255,102,0,0.7)] z-10 cursor-pointer">
               
               {/* Thicker, brighter spinning conic gradient */}
               <div className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_0%,#00000000_20%,#ff6600_40%,#0077ff_60%,#00000000_100%)] opacity-90 group-hover:opacity-100 transition-opacity"></div>

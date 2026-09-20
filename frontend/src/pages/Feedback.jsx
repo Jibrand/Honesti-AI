@@ -1,0 +1,219 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMessageSquare, FiClock, FiCheckCircle, FiChevronRight, FiX } from 'react-icons/fi';
+
+const Feedback = () => {
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [selectedFeedback, setSelectedFeedback] = useState(null);
+
+  useEffect(() => {
+    const rawFeedback = localStorage.getItem('honestiFeedback');
+    if (rawFeedback) {
+      setFeedbacks(JSON.parse(rawFeedback));
+    } else {
+      // Mock data so the investor sees something immediately if nothing is logged yet
+      setFeedbacks([
+        {
+          id: 1,
+          recipeName: 'Hidden-Veggie Mac & Cheese',
+          date: 'Yesterday, 6:30 PM',
+          status: 'Follow-up Active',
+          personas: [
+            { name: 'Aden', status: 'Submitted', rating: '😍', note: '' },
+            { name: 'Sophia', status: 'Pending', rating: null, note: '' },
+            { name: 'Oliver', status: 'Submitted', rating: '😍', note: 'Ate the whole bowl!' }
+          ]
+        },
+        {
+          id: 2,
+          recipeName: 'Spicy Thai Peanut Noodles',
+          date: 'Sep 18, 7:15 PM',
+          status: '100% Complete',
+          personas: [
+            { name: 'Maya', status: 'Submitted', rating: '😍', note: 'Loved the sunflower butter.' },
+            { name: 'David', status: 'Submitted', rating: '😐', note: 'Not enough protein for me.' }
+          ]
+        }
+      ]);
+    }
+  }, []);
+
+  return (
+    <div className="h-full w-full text-white font-sans relative overflow-hidden flex flex-col">
+      
+      {/* Global Blurred Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/Honesti 3D Avatar.jfif" 
+          alt="Background" 
+          className="absolute inset-0 w-full h-full object-cover object-[center_15%] opacity-50 blur-[3px] scale-110 pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-[#0b0f19]/80 backdrop-blur-md pointer-events-none"></div>
+      </div>
+
+      <div className="relative z-10 flex-1 flex flex-col p-4 md:p-6 overflow-y-auto custom-scrollbar">
+        
+        <div className="max-w-6xl mx-auto w-full">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 border-b border-white/10 pb-4 gap-4">
+            <div>
+              <h1 className="text-[24px] font-bold tracking-tight mb-1 drop-shadow-md">Household Feedback</h1>
+              <p className="text-gray-300 text-[11px] font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
+            </div>
+          </div>
+
+          {/* Feedback List (Table) */}
+          <div className="bg-[#0f1523]/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-white/10 text-[9px] uppercase tracking-widest text-gray-400 bg-white/5">
+                    <th className="px-4 py-2 font-bold">Meal</th>
+                    <th className="px-4 py-2 font-bold">Date</th>
+                    <th className="px-4 py-2 font-bold">Status</th>
+                    <th className="px-4 py-2 font-bold text-right"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {feedbacks.length === 0 ? (
+                    <tr>
+                      <td colSpan="4" className="px-4 py-8 text-center text-gray-400 text-sm">No feedback logs found. Cook a meal in the Cookbook first!</td>
+                    </tr>
+                  ) : (
+                    feedbacks.map(item => {
+                      const isComplete = item.personas.every(p => p.status === 'Submitted');
+                      const pendingPersonas = item.personas.filter(p => p.status === 'Pending');
+
+                      return (
+                        <tr 
+                          key={item.id} 
+                          onClick={() => setSelectedFeedback(item)}
+                          className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer group"
+                        >
+                          <td className="px-4 py-2">
+                            <p className="text-[12px] font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
+                          </td>
+                          <td className="px-4 py-2">
+                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium">
+                              <FiClock size={10} /> {item.date}
+                            </div>
+                          </td>
+                          <td className="px-4 py-2">
+                            {isComplete ? (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
+                                <FiCheckCircle size={10} /> Done
+                              </span>
+                            ) : (
+                              <div className="flex items-center gap-2">
+                                <span className="text-[10px] text-orange-400 font-bold">Waiting on:</span>
+                                <div className="flex -space-x-1.5">
+                                  {pendingPersonas.map((p, i) => (
+                                    <div 
+                                      key={i} 
+                                      className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-[8px] border border-[#0f1523] shadow-sm" 
+                                      title={p.name}
+                                    >
+                                      {p.name.substring(0, 1).toUpperCase()}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </td>
+                          <td className="px-4 py-2 text-right">
+                            <FiChevronRight className="inline-block text-gray-500 group-hover:text-white transition-colors" />
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Drawer for Feedback Details */}
+      <AnimatePresence>
+        {selectedFeedback && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedFeedback(null)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 cursor-pointer"
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-[360px] max-w-full bg-[#0b0f19] border-l border-white/10 z-50 shadow-2xl flex flex-col"
+            >
+              <div className="p-5 border-b border-white/10 flex justify-between items-start bg-white/5">
+                <div>
+                  <h2 className="text-[15px] font-bold text-white mb-0.5 leading-tight">{selectedFeedback.recipeName}</h2>
+                  <p className="text-[10px] text-gray-400 flex items-center gap-1.5"><FiClock size={10}/> {selectedFeedback.date}</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedFeedback(null)}
+                  className="p-1.5 bg-black/40 hover:bg-black/60 rounded-full text-white transition-colors border border-white/10"
+                >
+                  <FiX size={14} />
+                </button>
+              </div>
+
+              <div className="p-5 flex-1 overflow-y-auto custom-scrollbar space-y-5">
+                
+                {/* Status Callout */}
+                <div className="bg-[#0077ff]/10 border border-[#0077ff]/30 rounded-lg p-3 flex gap-2">
+                  <FiMessageSquare className="text-[#00E5FF] shrink-0 mt-0.5" size={14} />
+                  <p className="text-[10px] text-blue-100 font-medium leading-relaxed">
+                    Feedback is automatically collected via Smart Cooking Mode completion, or via automated follow-ups sent to personal devices. Cannot be manually edited to preserve AI integrity.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-3">Individual Persona Logs</h3>
+                  <div className="space-y-2">
+                    {selectedFeedback.personas.map((persona, idx) => (
+                      <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex flex-col gap-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-[9px] shadow-sm border border-[#0b0f19]">
+                              {persona.name.substring(0, 2).toUpperCase()}
+                            </div>
+                            <span className="text-[11px] font-bold text-white">{persona.name}</span>
+                          </div>
+                          
+                          {persona.status === 'Submitted' ? (
+                            <span className="text-lg bg-white/10 w-7 h-7 flex items-center justify-center rounded-full shadow-inner">{persona.rating}</span>
+                          ) : (
+                            <span className="text-[8px] font-bold uppercase tracking-widest text-orange-400 bg-orange-500/10 px-1.5 py-0.5 rounded border border-orange-500/20">
+                              Pending Follow-up
+                            </span>
+                          )}
+                        </div>
+
+                        {persona.note && (
+                          <div className="bg-black/30 p-2 rounded-md border border-white/5">
+                            <p className="text-[10px] text-gray-300 italic">"{persona.note}"</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+    </div>
+  );
+};
+
+export default Feedback;
