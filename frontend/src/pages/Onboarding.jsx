@@ -41,7 +41,7 @@ const Onboarding = () => {
       {/* LEFT PANEL: Clean Image without bubbles */}
       <div className="w-full md:w-[45%] lg:w-[45%] h-[35vh] md:h-screen relative shrink-0 overflow-hidden bg-black">
         <img 
-          src="/auth_sidebar_square.jpg" 
+          src="/onbording__image.jfif" 
           alt="Honesti Kitchen" 
           className="w-full h-full object-cover object-center"
         />
@@ -50,16 +50,16 @@ const Onboarding = () => {
       </div>
 
       {/* RIGHT PANEL: Form Area */}
-      <div ref={scrollRef} className="flex-1 h-[65vh] md:h-screen overflow-y-auto relative flex flex-col items-center justify-start pt-6 md:pt-10 pb-12 p-4 md:p-6 lg:p-8 z-20 custom-scrollbar">
+      <div ref={scrollRef} className="flex-1 h-[65vh] md:h-screen overflow-y-auto relative flex flex-col items-center justify-start pt-6 md:pt-6 pb-6 p-4 md:p-6 lg:p-8 z-20 custom-scrollbar">
         
-        <Logo className="mb-8 md:mb-10" />
+        <Logo className="mb-4 md:mb-6" />
 
         {/* Main Card Container */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-[460px] bg-[#0f1523]/80 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.5)] border border-white/10 p-6 md:p-8 relative shrink-0"
+          className="w-full max-w-[460px] bg-[#0f1523]/80 backdrop-blur-xl rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.5)] border border-white/10 p-5 md:p-6 relative shrink-0"
         >
           
           {/* Progress Header */}

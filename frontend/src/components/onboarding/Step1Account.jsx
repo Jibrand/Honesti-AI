@@ -25,9 +25,9 @@ const Step1Account = ({ formData, updateData, nextStep }) => {
 
   return (
     <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-      <h2 className="text-[24px] font-bold text-white mb-6 tracking-tight leading-tight">Let's create your account</h2>
+      <h2 className="text-[24px] font-bold text-white mb-4 tracking-tight leading-tight">Let's create your account</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         <div>
           <label className="block text-[12px] font-bold text-gray-300 mb-1.5 uppercase tracking-wide">Full Name</label>
           <input 
@@ -68,14 +68,14 @@ const Step1Account = ({ formData, updateData, nextStep }) => {
         </div>
       </div>
 
-      <p className="text-[11px] text-gray-400 mt-4 mb-6">
+      <p className="text-[11px] text-gray-400 mt-3 mb-4">
         Already have an account? <Link to="/login" className="text-[#0077ff] font-bold cursor-pointer hover:underline">Log in</Link>
       </p>
 
       <button 
         onClick={handleStart}
         disabled={isLoading}
-        className="w-full bg-[#0077ff] hover:bg-blue-600 text-white rounded-xl py-3.5 text-[13px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+        className="w-full bg-[#0077ff] hover:bg-blue-600 text-white rounded-xl py-3 text-[13px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {isLoading ? 'Setting up...' : 'Get Started'}
         {!isLoading && <FiArrowRight className="text-base" />}

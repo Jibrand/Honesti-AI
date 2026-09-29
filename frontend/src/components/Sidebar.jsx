@@ -39,30 +39,32 @@ const Sidebar = () => {
   const sidebarContent = (
     <>
       {/* Header Area */}
-      <div className={`pt-6 pb-4 px-3 flex items-center justify-between ${!showFullSidebar ? 'justify-center px-0' : ''} transition-all duration-300 min-h-[72px]`}>
-        <div className="flex items-center gap-2 overflow-hidden">
-          <div 
-            className="w-[30px] h-[30px] shrink-0 bg-[#0077ff] rounded-lg flex items-center justify-center text-white font-bold text-[14px] tracking-tight shadow-md"
-          >
-            HC
-          </div>
+      <div className={`pt-6 pb-4 px-3 flex items-start justify-between ${!showFullSidebar ? 'justify-center px-0' : ''} transition-all duration-300 min-h-[72px]`}>
+        <div className="flex items-start gap-2 overflow-hidden">
+          <img 
+            src="/sidebar_logo.png" 
+            alt="Logo" 
+            className="w-[30px] h-[30px] shrink-0 object-contain mt-0.5"
+          />
           {showFullSidebar && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="whitespace-nowrap shrink-0">
-              <h1 className="text-[13px] font-bold tracking-tight text-white leading-tight">HonestChoice <span className="text-[#0077ff]">AI</span></h1>
-              <p className="text-[7px] text-gray-400 tracking-[0.15em] uppercase font-semibold mt-[2px]">Real Life. Better Choices.</p>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="shrink-0 flex-1 min-w-0 flex flex-col justify-start">
+              <h1 className="text-[15px] font-bold tracking-tight text-white leading-tight whitespace-nowrap">HonestChoice <span className="text-[#0077ff]">AI</span></h1>
+              <p className="text-[10px] text-gray-400 tracking-normal font-semibold whitespace-nowrap origin-left transform scale-[0.75]">
+                One Companion. Endless Possibilities.
+              </p>
             </motion.div>
           )}
         </div>
         
         {/* Mobile Close Button */}
-        <button className="md:hidden text-gray-400 text-2xl" onClick={() => setIsMobileOpen(false)}>
+        <button className="md:hidden text-gray-400 text-2xl mt-0.5" onClick={() => setIsMobileOpen(false)}>
           <FiX />
         </button>
 
         {/* Desktop Hamburger / Lock Toggle - Cleanly styled */}
         {showFullSidebar && (
           <div 
-            className="hidden md:flex flex-col gap-[3px] cursor-pointer group p-1 shrink-0 ml-1"
+            className="hidden md:flex flex-col gap-[3px] cursor-pointer group p-1 shrink-0 -ml-1 mt-1"
             onClick={() => setIsLocked(!isLocked)}
           >
             <div className="w-[12px] h-[1.5px] bg-gray-400 group-hover:bg-white transition-colors rounded-full"></div>
@@ -148,7 +150,7 @@ const Sidebar = () => {
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#0f1523] border-b border-white/5 z-40 flex items-center justify-between px-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#0077ff] rounded-lg flex items-center justify-center text-white font-bold">HC</div>
+          <img src="/sidebar_logo.png" alt="Logo" className="w-8 h-8 object-contain" />
         </div>
         <button onClick={() => setIsMobileOpen(true)} className="text-white text-2xl">
           <FiMenu />
@@ -157,7 +159,7 @@ const Sidebar = () => {
 
       {/* Desktop Sidebar */}
       <motion.div 
-        animate={{ width: showFullSidebar ? 190 : 56 }}
+        animate={{ width: showFullSidebar ? 220 : 56 }}
         transition={{ type: "spring", bounce: 0, duration: 0.3 }}
         onMouseEnter={() => !isLocked && setIsHovered(true)}
         onMouseLeave={() => {

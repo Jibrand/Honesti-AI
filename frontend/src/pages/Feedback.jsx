@@ -143,85 +143,83 @@ const Feedback = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/80 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 flex flex-col p-4 md:p-6 overflow-y-auto custom-scrollbar">
+      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
         
-        <div className="max-w-6xl mx-auto w-full">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 border-b border-white/10 pb-4 gap-4">
-            <div>
-              <h1 className="text-[24px] font-bold tracking-tight mb-1 drop-shadow-md">Household Feedback</h1>
-              <p className="text-gray-300 text-[11px] font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
-            </div>
+        {/* Header Area */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-white/10 pb-5 gap-5">
+          <div className="flex-1">
+            <h1 className="text-[28px] font-bold tracking-tight mb-1.5 drop-shadow-md">Household Feedback</h1>
+            <p className="text-gray-300 text-[12px] font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
           </div>
+        </div>
 
-          {/* Feedback List (Table) */}
-          <div className="bg-[#0f1523]/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="border-b border-white/10 text-[9px] uppercase tracking-widest text-gray-400 bg-white/5">
-                    <th className="px-4 py-2 font-bold">Meal</th>
-                    <th className="px-4 py-2 font-bold">Date</th>
-                    <th className="px-4 py-2 font-bold">Status</th>
-                    <th className="px-4 py-2 font-bold text-right"></th>
+        {/* Feedback List (Table) */}
+        <div className="bg-[#0f1523]/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 text-[9px] uppercase tracking-widest text-gray-400 bg-white/5">
+                  <th className="px-4 py-3 font-bold">Meal</th>
+                  <th className="px-4 py-3 font-bold">Date</th>
+                  <th className="px-4 py-3 font-bold">Status</th>
+                  <th className="px-4 py-3 font-bold text-right"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {feedbacks.length === 0 ? (
+                  <tr>
+                    <td colSpan="4" className="px-4 py-8 text-center text-gray-400 text-sm">No feedback logs found. Cook a meal in the Cookbook first!</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {feedbacks.length === 0 ? (
-                    <tr>
-                      <td colSpan="4" className="px-4 py-8 text-center text-gray-400 text-sm">No feedback logs found. Cook a meal in the Cookbook first!</td>
-                    </tr>
-                  ) : (
-                    feedbacks.map(item => {
-                      const isComplete = item.personas.every(p => p.status === 'Submitted');
-                      const pendingPersonas = item.personas.filter(p => p.status === 'Pending');
+                ) : (
+                  feedbacks.map(item => {
+                    const isComplete = item.personas.every(p => p.status === 'Submitted');
+                    const pendingPersonas = item.personas.filter(p => p.status === 'Pending');
 
-                      return (
-                        <tr 
-                          key={item.id} 
-                          onClick={() => setSelectedFeedback(item)}
-                          className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer group"
-                        >
-                          <td className="px-4 py-2">
-                            <p className="text-[12px] font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
-                          </td>
-                          <td className="px-4 py-2">
-                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium">
-                              <FiClock size={10} /> {item.date}
-                            </div>
-                          </td>
-                          <td className="px-4 py-2">
-                            {isComplete ? (
-                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
-                                <FiCheckCircle size={10} /> Done
-                              </span>
-                            ) : (
-                              <div className="flex items-center gap-2">
-                                <span className="text-[10px] text-orange-400 font-bold">Waiting on:</span>
-                                <div className="flex -space-x-1.5">
-                                  {pendingPersonas.map((p, i) => (
-                                    <div 
-                                      key={i} 
-                                      className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-[8px] border border-[#0f1523] shadow-sm" 
-                                      title={p.name}
-                                    >
-                                      {p.name.substring(0, 1).toUpperCase()}
-                                    </div>
-                                  ))}
-                                </div>
+                    return (
+                      <tr 
+                        key={item.id} 
+                        onClick={() => setSelectedFeedback(item)}
+                        className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer group"
+                      >
+                        <td className="px-4 py-3">
+                          <p className="text-[12px] font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium">
+                            <FiClock size={10} /> {item.date}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3">
+                          {isComplete ? (
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
+                              <FiCheckCircle size={10} /> Done
+                            </span>
+                          ) : (
+                            <div className="flex items-center gap-2">
+                              <span className="text-[10px] text-orange-400 font-bold">Waiting on:</span>
+                              <div className="flex -space-x-1.5">
+                                {pendingPersonas.map((p, i) => (
+                                  <div 
+                                    key={i} 
+                                    className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-[8px] border border-[#0f1523] shadow-sm" 
+                                    title={p.name}
+                                  >
+                                    {p.name.substring(0, 1).toUpperCase()}
+                                  </div>
+                                ))}
                               </div>
-                            )}
-                          </td>
-                          <td className="px-4 py-2 text-right">
-                            <FiChevronRight className="inline-block text-gray-500 group-hover:text-white transition-colors" />
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
-            </div>
+                            </div>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 text-right">
+                          <FiChevronRight className="inline-block text-gray-500 group-hover:text-white transition-colors" />
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

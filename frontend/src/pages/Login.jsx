@@ -34,11 +34,13 @@ const Login = () => {
       {/* RIGHT PANEL: Login Image (now on the right) */}
       <div className="w-full md:w-[45%] lg:w-[45%] h-[35vh] md:h-screen relative shrink-0 overflow-hidden bg-black">
         <img 
-          src="/auth_sidebar_square_login.png" 
+          src="/login_image.jfif" 
           alt="Honesti Kitchen Login" 
           className="w-full h-full object-cover object-center"
         />
-        {/* Only fade at the very left edge (via-70%) to avoid darkening the baked-in text bubbles */}
+        
+      
+        {/* Fade gradient */}
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent via-70% to-[#0b0f19] pointer-events-none w-full z-0"></div>
       </div>
 
