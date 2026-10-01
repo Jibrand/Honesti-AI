@@ -25,220 +25,150 @@ const initialRecipes = [
       'Drizzle the butter mixture generously over the salmon and asparagus.',
       'Bake for 12-15 minutes. Ensure David\'s larger portion reaches a safe internal temp of 145°F.',
       'Serve immediately, keeping portions distinct as per household dietary maps.'
+    ],
+    availableVariations: [
+      {
+        variation: 'American', flag: 'us',
+        image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=600',
+        time: '25 min', difficulty: 'Easy',
+        aiModifications: '10-Year Log Adjustments: Maya\'s aversion to cilantro is strictly enforced here.',
+        ingredients: ['2 Salmon Fillets (6oz)', '2 tbsp Ghee', '1 Lemon', 'Fresh Flat-Leaf Parsley', '4 Cloves Garlic', '1 lb Asparagus'],
+        instructions: ['Preheat oven to 400°F', 'Bake for 12-15 minutes.']
+      },
+      {
+        variation: 'Japanese', flag: 'jp',
+        image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&q=80&w=600',
+        time: '25 min', difficulty: 'Easy',
+        aiModifications: '10-Year Log Adjustments: Replaced butter/lemon profile with a light, low-sodium teriyaki glaze.',
+        ingredients: ['2 Salmon Fillets (6oz)', '1/4 cup Low-Sodium Soy Sauce', '1 tbsp Mirin', '1 tbsp Honey', 'Bok Choy', 'Sesame Seeds'],
+        instructions: ['Whisk soy sauce, mirin, and honey to create the glaze.', 'Pan-sear salmon fillets for 4 minutes per side.', 'Pour glaze over salmon and reduce until sticky.', 'Steam bok choy and serve alongside salmon.']
+      },
+      {
+        variation: 'Mediterranean', flag: 'gr',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600',
+        time: '30 min', difficulty: 'Medium',
+        aiModifications: '10-Year Log Adjustments: Substituted heavy butter with extra virgin olive oil. Added Kalamata olives and feta cheese.',
+        ingredients: ['2 Salmon Fillets', 'Extra Virgin Olive Oil', 'Lemon Juice', 'Oregano', 'Kalamata Olives', 'Feta Cheese (David Only)'],
+        instructions: ['Marinate salmon in olive oil, lemon, and oregano.', 'Bake at 400°F for 15 minutes.', 'Top with olives and feta cheese for David.']
+      },
+      {
+        variation: 'Mexican', flag: 'mx',
+        image: 'https://images.unsplash.com/photo-1560717845-968823efbee1?auto=format&fit=crop&q=80&w=600',
+        time: '25 min', difficulty: 'Easy',
+        aiModifications: '10-Year Log Adjustments: Swapped standard herbs for a smoky adobo chipotle rub.',
+        ingredients: ['2 Salmon Fillets', 'Chipotle in Adobo', 'Avocado', 'Red Onion', 'Lime', 'Cilantro'],
+        instructions: ['Rub salmon with chipotle paste.', 'Bake at 400°F.', 'Top with avocado salsa.']
+      }
     ]
   },
   {
     id: 2,
-    title: 'Lemon Herb Butter Salmon',
-    variation: 'Japanese', flag: 'jp',
-    image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&q=80&w=600',
-    time: '25 min',
-    minutes: 25,
-    difficulty: 'Easy',
-    categories: ['High Protein', 'Pescatarian'],
-    matchScore: 94,
-    matchedFor: ['Maya'],
-    warnings: ['Contains Soy'],
-    aiModifications: '10-Year Log Adjustments: Replaced butter/lemon profile with a light, low-sodium teriyaki glaze. Served with steamed bok choy instead of asparagus for Maya.',
-    ingredients: ['2 Salmon Fillets (6oz)', '1/4 cup Low-Sodium Soy Sauce', '1 tbsp Mirin', '1 tbsp Honey', 'Bok Choy', 'Sesame Seeds'],
-    instructions: [
-      'Whisk soy sauce, mirin, and honey to create the glaze.',
-      'Pan-sear salmon fillets for 4 minutes per side.',
-      'Pour glaze over salmon and reduce until sticky.',
-      'Steam bok choy and serve alongside salmon.'
+    title: 'Smoked Brisket & Slaw Tacos',
+    variation: 'Texas BBQ', flag: 'us',
+    image: 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&q=80&w=600',
+    time: '4 hrs (Smoker)',
+    minutes: 240,
+    difficulty: 'Hard',
+    categories: ['High Protein'],
+    matchScore: 92,
+    matchedFor: ['David', 'Aden'],
+    warnings: ['Contains Red Meat', 'Not Keto'],
+    aiModifications: '10-Year Log Adjustments: Aden is in an extreme caloric surplus for football, so the recipe dynamically scaled the brisket volume by 1.5x.',
+    ingredients: ['4 lb Beef Brisket', 'Corn Taco Shells', 'Cabbage Slaw', 'Sugar-Free BBQ Rub'],
+    instructions: ['Preheat smoker to 225°F. Smoke brisket for 4 hours.', 'Rest for 1 hour, then slice.', 'Assemble tacos.'],
+    availableVariations: [
+      {
+        variation: 'Texas BBQ', flag: 'us',
+        image: 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&q=80&w=600',
+        time: '4 hrs', difficulty: 'Hard',
+        aiModifications: 'Standard Texas BBQ variant.',
+        ingredients: ['4 lb Beef Brisket', 'Corn Taco Shells', 'Cabbage Slaw', 'Sugar-Free BBQ Rub'],
+        instructions: ['Preheat smoker to 225°F. Smoke brisket for 4 hours.', 'Rest for 1 hour, then slice.', 'Assemble tacos.']
+      },
+      {
+        variation: 'Korean', flag: 'kr',
+        image: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=600',
+        time: '4 hrs', difficulty: 'Hard',
+        aiModifications: 'Infused with gochujang and served with kimchi slaw.',
+        ingredients: ['4 lb Beef Brisket', 'Gochujang', 'Kimchi Slaw', 'Sesame Seeds'],
+        instructions: ['Smoke brisket with gochujang rub.', 'Serve with kimchi slaw.']
+      }
     ]
   },
   {
     id: 3,
-    title: 'Lemon Herb Butter Salmon',
-    variation: 'Mediterranean', flag: 'gr',
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600',
+    title: 'Hidden-Veggie Mac & Cheese',
+    variation: 'American', flag: 'us',
+    image: 'https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?auto=format&fit=crop&q=80&w=600',
     time: '30 min',
     minutes: 30,
     difficulty: 'Medium',
-    categories: ['Heart Healthy'],
-    matchScore: 91,
-    matchedFor: ['Maya', 'David'],
-    warnings: [],
-    aiModifications: '10-Year Log Adjustments: Substituted heavy butter with extra virgin olive oil. Added Kalamata olives and feta cheese, excluding feta from Maya\'s portion.',
-    ingredients: ['2 Salmon Fillets', 'Extra Virgin Olive Oil', 'Lemon Juice', 'Oregano', 'Kalamata Olives', 'Feta Cheese (David Only)'],
-    instructions: [
-      'Marinate salmon in olive oil, lemon, and oregano.',
-      'Bake at 400°F for 15 minutes.',
-      'Top with olives and feta cheese for David.'
+    categories: ['Kid-Friendly'],
+    matchScore: 100,
+    matchedFor: ['Aden', 'Sophia', 'Oliver'],
+    warnings: ['Contains Dairy', 'Contains Gluten'],
+    aiModifications: '10-Year Log Adjustments: Pureed squash and cauliflower into cheddar sauce.',
+    ingredients: ['1 lb Elbow Macaroni', '2 cups Mild Cheddar', '1 cup Butternut Squash', '1 cup Cauliflower'],
+    instructions: ['Boil macaroni.', 'Blend steamed veggies with milk.', 'Combine sauce with pasta.'],
+    availableVariations: [
+      {
+        variation: 'American', flag: 'us',
+        image: 'https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?auto=format&fit=crop&q=80&w=600',
+        time: '30 min', difficulty: 'Medium',
+        aiModifications: '10-Year Log Adjustments: Pureed squash and cauliflower into cheddar sauce.',
+        ingredients: ['1 lb Elbow Macaroni', '2 cups Mild Cheddar', '1 cup Butternut Squash', '1 cup Cauliflower'],
+        instructions: ['Boil macaroni.', 'Blend steamed veggies with milk.', 'Combine sauce with pasta.']
+      },
+      {
+        variation: 'Italian', flag: 'it',
+        image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600',
+        time: '30 min', difficulty: 'Medium',
+        aiModifications: 'Swapped cheddar for parmesan and mozzarella. Added basil.',
+        ingredients: ['1 lb Penne', 'Parmesan', 'Mozzarella', 'Fresh Basil'],
+        instructions: ['Boil penne.', 'Make cheese sauce with parmesan.', 'Toss with fresh basil.']
+      }
     ]
   },
   {
     id: 4,
-    title: 'Korean Spicy Noodles',
-      variation: 'Korean', flag: 'kr',
+    title: 'Spicy Noodles',
+    variation: 'Korean', flag: 'kr',
     image: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=600',
     time: '20 min',
     minutes: 20,
-    difficulty: 'Easy',
-    categories: ['High Protein'],
-    matchScore: 85,
-    matchedFor: ['Maya'],
-    warnings: ['Contains Peanuts (David Mild Allergy)', 'Too Spicy (Sophia)'],
-    aiModifications: '10-Year Log Adjustments: Replaced traditional peanut butter with sunflower seed butter to protect David from his mild pecan/nut cross-reactivity. Maya requested this meal, but Sophia (11) cannot handle spice; the system instructs you to pull Sophia\'s portion out BEFORE adding the chili flakes.',
-    ingredients: ['1 lb Rice Noodles', '1/2 cup Sunflower Seed Butter (Peanut Sub)', '1/4 cup Low-Sodium Soy Sauce', '2 Limes', '2 tbsp Red Chili Flakes', '1 Block Extra-Firm Tofu', 'Green Onions'],
-    instructions: [
-      'Cook rice noodles in boiling water for 4-5 minutes, then drain.',
-      'In a bowl, whisk sunflower butter, soy sauce, lime juice, and a splash of warm water until smooth.',
-      'Press and cube the tofu, then pan-fry in sesame oil until crispy on all sides.',
-      'Toss the noodles, tofu, and sauce together in a large wok.',
-      'CRITICAL: Remove Sophia’s portion to a separate bowl now.',
-      'Add chili flakes to the remaining wok and toss vigorously for Maya. Garnish with green onions.'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Grandma Rosa’s Slow-Cooked Chicken Stew',
-    variation: 'Cuban', flag: 'cu',
-    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&q=80&w=600',
-    time: '6 hrs (Crockpot)',
-    minutes: 360,
-    difficulty: 'Easy',
-    categories: ['Kid-Friendly'],
-    matchScore: 100,
-    matchedFor: ['Grandma Rosa', 'Oliver'],
-    warnings: ['Not Keto'],
-    aiModifications: '10-Year Log Adjustments: Perfectly calibrated for Grandma Rosa\'s 2022 dietary shift. All chicken is slow-cooked for 6 hours until it literally falls apart, requiring zero chewing effort. Sodium is strictly capped under 400mg per serving by eliminating added salt and using homemade unsalted bone broth. Oliver loves this texture too!',
-    ingredients: ['2 lbs Boneless Skinless Chicken Thighs', '4 cups Unsalted Bone Broth', '3 Large Carrots (Chopped small)', '2 Celery Stalks', '1 Yellow Onion', 'Fresh Thyme', 'No-Salt Seasoning Blend'],
-    instructions: [
-      'Chop all vegetables into very small, uniform pieces to ensure they turn completely soft.',
-      'Place chicken thighs at the bottom of the slow cooker.',
-      'Pour unsalted bone broth over the chicken, and add all vegetables and thyme sprigs.',
-      'Cook on LOW for 6-8 hours until the chicken shreds effortlessly with a fork.',
-      'Remove thyme sprigs. Shred the chicken directly in the pot.',
-      'Serve warm. Do not add finishing salt to Grandma Rosa\'s bowl.'
-    ]
-  }
-  ,
-  {
-    id: 6,
-    title: 'Indian Masala Noodles',
-    variation: 'Indian', flag: 'in',
-    image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=600',
-    time: '25 min',
-    minutes: 25,
     difficulty: 'Medium',
-    categories: ['High Protein', 'Vegetarian'],
-    matchScore: 90,
-    matchedFor: ['Maya', 'David'],
-    warnings: ['Spicy (Sophia)'],
-    aiModifications: '10-Year Log Adjustments: Converted standard noodles to a high-protein chickpea base for David. Infused with turmeric and garam masala. Sophia gets a non-spicy butter-garlic version.',
-    ingredients: ['1 lb Chickpea Noodles', '2 tbsp Garam Masala', '1 tsp Turmeric', 'Coconut Milk', 'Mixed Bell Peppers', 'Tofu (Extra-Firm)'],
-    instructions: [
-      'Boil chickpea noodles until tender.',
-      'Saut� bell peppers and tofu in coconut oil.',
-      'Add spices and coconut milk to create a rich masala sauce.',
-      'Toss noodles in the sauce.'
-    ]
-  },
-  {
-    id: 7,
-    title: 'Mexican Fajita Noodles',
-    variation: 'Mexican', flag: 'mx',
-    image: 'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&q=80&w=600',
-    time: '20 min',
-    minutes: 20,
-    difficulty: 'Easy',
-    categories: ['Family Favorite'],
-    matchScore: 88,
-    matchedFor: ['Aden', 'Sophia'],
-    warnings: [],
-    aiModifications: '10-Year Log Adjustments: Fused traditional fajita seasonings with a noodle base because Aden prefers pasta textures. Loaded with extra grilled chicken for protein.',
-    ingredients: ['1 lb Pasta', 'Fajita Seasoning', 'Grilled Chicken Strips', 'Onions', 'Bell Peppers', 'Cilantro (Sub Parsley for Maya)'],
-    instructions: [
-      'Cook pasta according to package instructions.',
-      'Grill chicken strips with fajita seasoning, onions, and peppers.',
-      'Combine pasta and fajita mixture.',
-      'Garnish with fresh parsley for Maya, cilantro for others.'
-    ]
-  },
-  {
-    id: 8,
-    title: 'Italian Garlic Noodles',
-    variation: 'Italian', flag: 'it',
-    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600',
-    time: '20 min',
-    minutes: 20,
-    difficulty: 'Medium',
-    categories: ['Kid-Friendly', 'Vegetarian'],
-    matchScore: 95,
-    matchedFor: ['Sophia', 'Oliver'],
-    warnings: ['Contains Gluten'],
-    aiModifications: '10-Year Log Adjustments: Used gluten-free pasta for Maya. Added extra parmesan to accommodate Oliver\'s preference for cheesy flavors.',
-    ingredients: ['1 lb Pasta', 'Garlic Cloves', 'Olive Oil', 'Parmesan Cheese', 'Fresh Basil', 'Red Pepper Flakes (Optional)'],
-    instructions: [
-      'Boil pasta until al dente, drain and reserve some pasta water.',
-      'Sauté minced garlic in olive oil until fragrant.',
-      'Toss pasta in garlic oil, adding reserved water to create a sauce.',
-      'Top generously with parmesan and fresh basil.'
-    ]
-  }
-  ,
-  {
-    id: 9,
-    title: 'Japanese Teriyaki Salmon',
-    variation: 'Japanese', flag: 'jp',
-    image: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&q=80&w=600',
-    time: '25 min',
-    minutes: 25,
-    difficulty: 'Easy',
-    categories: ['High Protein', 'Pescatarian'],
-    matchScore: 94,
+    categories: ['Spicy'],
+    matchScore: 92,
     matchedFor: ['Maya'],
     warnings: ['Contains Soy'],
-    aiModifications: '10-Year Log Adjustments: Replaced butter/lemon profile with a light, low-sodium teriyaki glaze. Served with steamed bok choy instead of asparagus for Maya.',
-    ingredients: ['2 Salmon Fillets (6oz)', '1/4 cup Low-Sodium Soy Sauce', '1 tbsp Mirin', '1 tbsp Honey', 'Bok Choy', 'Sesame Seeds'],
-    instructions: [
-      'Whisk soy sauce, mirin, and honey to create the glaze.',
-      'Pan-sear salmon fillets for 4 minutes per side.',
-      'Pour glaze over salmon and reduce until sticky.',
-      'Steam bok choy and serve alongside salmon.'
-    ]
-  },
-  {
-    id: 10,
-    title: 'Mediterranean Lemon-Herb Salmon',
-    variation: 'Mediterranean', flag: 'gr',
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600',
-    time: '30 min',
-    minutes: 30,
-    difficulty: 'Medium',
-    categories: ['Heart Healthy'],
-    matchScore: 91,
-    matchedFor: ['Maya', 'David'],
-    warnings: [],
-    aiModifications: '10-Year Log Adjustments: Substituted heavy butter with extra virgin olive oil. Added Kalamata olives and feta cheese, excluding feta from Maya\'s portion.',
-    ingredients: ['2 Salmon Fillets', 'Extra Virgin Olive Oil', 'Lemon Juice', 'Oregano', 'Kalamata Olives', 'Feta Cheese (David Only)'],
-    instructions: [
-      'Marinate salmon in olive oil, lemon, and oregano.',
-      'Bake at 400°F for 15 minutes.',
-      'Top with olives and feta cheese for David.'
-    ]
-  },
-  {
-    id: 11,
-    title: 'Mexican Chipotle Salmon',
-    variation: 'Mexican', flag: 'mx',
-    image: 'https://images.unsplash.com/photo-1560717845-968823efbee1?auto=format&fit=crop&q=80&w=600',
-    time: '25 min',
-    minutes: 25,
-    difficulty: 'Easy',
-    categories: ['Spicy', 'High Protein'],
-    matchScore: 88,
-    matchedFor: ['Aden', 'David'],
-    warnings: ['Spicy'],
-    aiModifications: '10-Year Log Adjustments: Swapped standard herbs for a smoky adobo chipotle rub to satisfy Aden\'s spice craving. Served with avocado salsa.',
-    ingredients: ['2 Salmon Fillets', 'Chipotle in Adobo', 'Avocado', 'Red Onion', 'Lime', 'Cilantro'],
-    instructions: [
-      'Rub salmon with chipotle paste.',
-      'Bake or air-fry at 400°F for 12-14 minutes.',
-      'Dice avocado, onion, and cilantro into a fresh salsa.',
-      'Top cooked salmon with avocado salsa.'
+    aiModifications: '10-Year Log Adjustments: Used Gochujang and sesame oil.',
+    ingredients: ['1 lb Ramen Noodles', 'Gochujang Paste', 'Sesame Oil', 'Scallions'],
+    instructions: ['Boil ramen noodles.', 'Mix Gochujang, sesame oil.', 'Toss noodles.'],
+    availableVariations: [
+      {
+        variation: 'Korean', flag: 'kr',
+        image: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=600',
+        time: '20 min', difficulty: 'Medium',
+        aiModifications: '10-Year Log Adjustments: Used Gochujang and sesame oil.',
+        ingredients: ['1 lb Ramen Noodles', 'Gochujang Paste', 'Sesame Oil', 'Scallions'],
+        instructions: ['Boil ramen noodles.', 'Mix Gochujang, sesame oil.', 'Toss noodles.']
+      },
+      {
+        variation: 'Indian', flag: 'in',
+        image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=600',
+        time: '25 min', difficulty: 'Medium',
+        aiModifications: 'Infused with turmeric and garam masala.',
+        ingredients: ['1 lb Chickpea Noodles', '2 tbsp Garam Masala', '1 tsp Turmeric', 'Coconut Milk'],
+        instructions: ['Boil chickpea noodles.', 'Add spices and coconut milk.', 'Toss noodles.']
+      },
+      {
+        variation: 'Mexican', flag: 'mx',
+        image: 'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&q=80&w=600',
+        time: '20 min', difficulty: 'Easy',
+        aiModifications: 'Fused traditional fajita seasonings with a noodle base.',
+        ingredients: ['1 lb Pasta', 'Fajita Seasoning', 'Grilled Chicken Strips', 'Bell Peppers'],
+        instructions: ['Cook pasta.', 'Grill chicken strips with fajita seasoning.', 'Combine.']
+      }
     ]
   }
 ];
@@ -300,6 +230,8 @@ const Cookbook = () => {
     setRecipes(initialRecipes);
   }, []);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [activeVariationIndex, setActiveVariationIndex] = useState(0);
+  const [variationModalRecipe, setVariationModalRecipe] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All Recipes');
   
@@ -341,6 +273,11 @@ const Cookbook = () => {
 
   const openDrawer = (recipe = null) => {
     if (recipe) {
+      if (recipe.availableVariations && recipe.availableVariations.length > 0) {
+        setVariationModalRecipe(recipe);
+        return;
+      }
+      setActiveVariationIndex(0);
       setSelectedRecipe(recipe);
       setEditForm({ ...recipe });
       setIsAdding(false);
@@ -367,6 +304,16 @@ const Cookbook = () => {
       setIsEditing(true);
     }
     setMenuOpenId(null);
+  };
+
+  
+  const handleSelectVariation = (recipe, index) => {
+    setActiveVariationIndex(index);
+    setSelectedRecipe(recipe);
+    setEditForm({ ...recipe });
+    setIsAdding(false);
+    setIsEditing(false);
+    setVariationModalRecipe(null);
   };
 
   const closeDrawer = () => {
@@ -747,7 +694,7 @@ const Cookbook = () => {
             >
               
               {/* Recipe Drawer Header (Image background) - REDUCED HEIGHT */}
-              <div className="relative h-40 w-full shrink-0 group">
+              <div className="relative h-48 w-full shrink-0 group flex flex-col">
                 {isEditing ? (
                   <>
                     <img src={editForm.image} alt="Upload" className="w-full h-full object-cover brightness-50" />
@@ -757,7 +704,7 @@ const Cookbook = () => {
                     </div>
                   </>
                 ) : (
-                  <img src={selectedRecipe.image} alt={selectedRecipe.title} className="w-full h-full object-cover" />
+                  <img src={selectedRecipe.availableVariations?.[activeVariationIndex]?.image || selectedRecipe.image} alt={selectedRecipe.title} className="w-full h-full object-cover" />
                 )}
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/40 to-transparent pointer-events-none"></div>
@@ -887,7 +834,7 @@ const Cookbook = () => {
                     />
                   ) : (
                     <p className="text-[12.5px] text-gray-200 leading-relaxed font-medium relative z-10">
-                      {selectedRecipe.aiModifications || "No automated modifications applied."}
+                      {selectedRecipe.availableVariations?.[activeVariationIndex]?.aiModifications || selectedRecipe.aiModifications || "No automated modifications applied."}
                     </p>
                   )}
                 </section>
@@ -930,7 +877,7 @@ const Cookbook = () => {
                     />
                   ) : (
                     <ul className="space-y-3">
-                      {selectedRecipe.ingredients.map((ing, i) => (
+                      {(selectedRecipe.availableVariations?.[activeVariationIndex]?.ingredients || selectedRecipe.ingredients).map((ing, i) => (
                         <li key={i} className="flex items-center justify-between text-[13px] text-gray-200">
                           <div className="flex items-center gap-3">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
@@ -975,7 +922,7 @@ const Cookbook = () => {
                     </div>
                   ) : (
                     <div className="space-y-5">
-                      {selectedRecipe.instructions.map((step, i) => (
+                      {(selectedRecipe.availableVariations?.[activeVariationIndex]?.instructions || selectedRecipe.instructions).map((step, i) => (
                         <div key={i} className="flex gap-4">
                           <div className="w-6 h-6 shrink-0 rounded-full bg-[#0077ff]/20 text-[#0077ff] flex items-center justify-center text-[10px] font-black border border-[#0077ff]/30">
                             {i + 1}
@@ -1125,6 +1072,55 @@ const Cookbook = () => {
               </button>
             </div>
             
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      
+      {/* Variation Selection Modal */}
+      <AnimatePresence>
+        {variationModalRecipe && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="bg-[#0b0f19] border border-white/10 rounded-2xl w-full max-w-md p-6 shadow-2xl flex flex-col items-center relative"
+            >
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00E5FF] to-[#0077ff]"></div>
+              
+              <button 
+                onClick={() => setVariationModalRecipe(null)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                <FiX size={18} />
+              </button>
+
+              <h2 className="text-xl font-bold text-white mb-2 tracking-tight mt-2 text-center">Select Cultural Variation</h2>
+              <p className="text-gray-400 text-[11px] text-center mb-6">Choose a tradition for {variationModalRecipe.title}</p>
+
+              <div className="flex flex-col gap-3 w-full mb-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-2">
+                {variationModalRecipe.availableVariations.map((v, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleSelectVariation(variationModalRecipe, idx)}
+                    className="flex items-center gap-3 w-full bg-white/5 hover:bg-[#0077ff]/20 border border-white/10 hover:border-[#0077ff]/50 rounded-xl p-4 transition-all group cursor-pointer text-left"
+                  >
+                    {v.flag && <img src={`https://flagcdn.com/w40/${v.flag}.png`} alt="flag" className="w-8 h-auto rounded shadow-md group-hover:scale-110 transition-transform" />}
+                    <div className="flex flex-col">
+                      <span className="text-white font-bold text-[14px]">{v.variation} Style</span>
+                      <span className="text-gray-400 text-[10px] uppercase tracking-wider">{v.time} • {v.difficulty}</span>
+                    </div>
+                    <FiChevronRight size={18} className="text-[#0077ff] ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  </button>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
