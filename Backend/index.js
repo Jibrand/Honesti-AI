@@ -21,5 +21,5 @@ if (CONNECTION_URL) {
   mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true,}).then(() => { console.log('Connected Successfully.'); }) .catch((err) => console.log('No connection ', err));
 }
 
-export const server = app.listen(PORT, () => console.log("Listening on port ", PORT));
+export const server = app.listen(PORT, '0.0.0.0', () => console.log("Listening on port ", PORT));
 export default app;

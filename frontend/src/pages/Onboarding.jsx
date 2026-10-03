@@ -2,11 +2,9 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Step1Account from '../components/onboarding/Step1Account';
-import Step2Household from '../components/onboarding/Step2Household';
 import Logo from '../components/Logo';
 
 const Onboarding = () => {
-  const [step, setStep] = useState(1);
   const scrollRef = useRef(null);
   const [formData, setFormData] = useState({
     adults: 2,
@@ -23,23 +21,14 @@ const Onboarding = () => {
   };
 
   const nextStep = () => {
-    if (step < 2) {
-      setStep(step + 1);
-      if (scrollRef.current) scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      navigate('/home'); // Finish onboarding
-    }
-  };
-
-  const prevStep = () => {
-    if (step > 1) setStep(step - 1);
+    navigate('/home'); // Finish onboarding
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-[#0b0f19] overflow-hidden font-sans">
+    <div className="h-[100dvh] w-full flex flex-col md:flex-row bg-[#0b0f19] overflow-hidden font-sans">
       
       {/* LEFT PANEL: Clean Image without bubbles */}
-      <div className="w-full md:w-[45%] lg:w-[45%] h-[35vh] md:h-screen relative shrink-0 overflow-hidden bg-black">
+      <div className="hidden md:block w-full md:w-[45%] lg:w-[45%] h-[35vh] md:h-screen relative shrink-0 overflow-hidden bg-black">
         <img 
           src="/onbording__image.jfif" 
           alt="Honesti Kitchen" 
@@ -50,9 +39,9 @@ const Onboarding = () => {
       </div>
 
       {/* RIGHT PANEL: Form Area */}
-      <div ref={scrollRef} className="flex-1 h-[65vh] md:h-screen overflow-y-auto relative flex flex-col items-center justify-start pt-6 md:pt-6 pb-6 p-4 md:p-6 lg:p-8 z-20 custom-scrollbar">
+      <div ref={scrollRef} className="flex-1 h-full md:h-screen overflow-hidden relative flex flex-col items-center justify-center p-4 md:p-6 lg:p-8 z-20">
         
-        <Logo className="mb-4 md:mb-6" />
+        <Logo className="mb-6 md:mb-6 shrink-0 z-30" />
 
         {/* Main Card Container */}
         <motion.div 
@@ -65,21 +54,13 @@ const Onboarding = () => {
           {/* Progress Header */}
           <div className="mb-6">
             <h3 className="text-center text-[11px] font-bold text-gray-400 mb-3 tracking-wide uppercase">
-              {step === 1 && "Step 01: Create Account"}
-              {step === 2 && "Step 02: Household Context"}
+              Create Account
             </h3>
-            
-            {/* Progress Bar */}
-            <div className="flex gap-2 w-full max-w-[260px] mx-auto">
-              <div className={`h-1 flex-1 rounded-full transition-colors duration-500 ${step >= 1 ? 'bg-[#0077ff]' : 'bg-white/10'}`}></div>
-              <div className={`h-1 flex-1 rounded-full transition-colors duration-500 ${step >= 2 ? 'bg-[#0077ff]' : 'bg-white/10'}`}></div>
-            </div>
           </div>
 
           {/* Form Steps */}
           <div className="relative">
-            {step === 1 && <Step1Account formData={formData} updateData={updateData} nextStep={nextStep} />}
-            {step === 2 && <Step2Household formData={formData} updateData={updateData} nextStep={nextStep} prevStep={prevStep} />}
+            <Step1Account formData={formData} updateData={updateData} nextStep={nextStep} />
           </div>
 
         </motion.div>

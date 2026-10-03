@@ -118,7 +118,7 @@ const TagInput = ({ tags, setTags, placeholder, colorTheme }) => {
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={tags.length === 0 ? placeholder : "Add more (press Enter)..."}
-        className="flex-1 min-w-[130px] bg-transparent text-[11px] text-white focus:outline-none placeholder:text-gray-500 py-1"
+        className="flex-1 min-w-[130px] bg-transparent text-[14px] md:text-[11px] text-white focus:outline-none placeholder:text-gray-500 py-1"
       />
     </div>
   );
@@ -232,16 +232,16 @@ const Household = () => {
       <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 border-b border-white/10 pb-5 gap-4">
+        <div className="flex flex-row justify-between items-center md:items-end mb-8 border-b border-white/10 pb-5 gap-2 md:gap-4">
           <div>
-            <h1 className="text-[28px] font-bold tracking-tight mb-1.5 drop-shadow-md">My Household</h1>
-            <p className="text-gray-300 text-[12px] font-medium drop-shadow-sm">Manage culinary personas, preferences, and 10 years of dietary context.</p>
+            <h1 className="text-[22px] md:text-[28px] font-bold tracking-tight mb-1 md:mb-1.5 drop-shadow-md truncate">My Household</h1>
+            <p className="hidden md:block text-gray-300 text-[14px] md:text-[12px] font-medium drop-shadow-sm truncate">Manage culinary personas, preferences, and 10 years of dietary context.</p>
           </div>
           <button 
             onClick={() => openDrawer()}
-            className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 shrink-0 active:scale-95 border border-blue-400/30"
+            className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-3 py-2 md:px-4 md:py-2 rounded-lg text-[13px] md:text-[14px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 shrink-0 active:scale-95 border border-blue-400/30"
           >
-            <FiPlus size={14} /> Add Member
+            <FiPlus size={16} /><span className="hidden md:inline">Add Member</span><span className="md:hidden">Add</span>
           </button>
         </div>
 
@@ -291,13 +291,13 @@ const Household = () => {
                       >
                         <button 
                           onClick={() => openDrawer(persona)}
-                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[11px] font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[14px] md:text-[11px] font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
                         >
                           <FiEdit2 size={12}/> Edit
                         </button>
                         <button 
                           onClick={() => handleDelete(persona.id)}
-                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[11px] font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[14px] md:text-[11px] font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
                         >
                           <FiTrash2 size={12}/> Delete
                         </button>
@@ -349,7 +349,7 @@ const Household = () => {
               {/* Action Button */}
               <button 
                 onClick={() => openDrawer(persona)}
-                className="cursor-pointer w-full py-2 bg-white/5 hover:bg-white/10 text-[11px] font-bold text-gray-300 rounded-lg transition-colors border border-white/5 group-hover:bg-[#0077ff] group-hover:text-white group-hover:border-transparent group-hover:shadow-[0_0_15px_rgba(0,119,255,0.3)]"
+                className="cursor-pointer w-full py-2 bg-white/5 hover:bg-white/10 text-[14px] md:text-[11px] font-bold text-gray-300 rounded-lg transition-colors border border-white/5 group-hover:bg-[#0077ff] group-hover:text-white group-hover:border-transparent group-hover:shadow-[0_0_15px_rgba(0,119,255,0.3)]"
               >
                 View Full Persona
               </button>
@@ -410,7 +410,7 @@ const Household = () => {
                           value={editForm.email || ''} 
                           onChange={(e) => setEditForm({...editForm, email: e.target.value})}
                           placeholder="Email Address"
-                          className="w-full bg-black/20 border border-white/10 rounded-md px-2 py-1 text-[11px] text-gray-300 font-medium focus:border-[#0077ff] focus:outline-none"
+                          className="w-full bg-black/20 border border-white/10 rounded-md px-2 py-1 text-[14px] md:text-[11px] text-gray-300 font-medium focus:border-[#0077ff] focus:outline-none"
                         />
                       </>
                     ) : (
@@ -419,7 +419,7 @@ const Household = () => {
                         <p className="text-[10px] text-[#00E5FF] uppercase tracking-widest font-semibold mt-1.5 truncate">{selectedPersona.role}</p>
                         {selectedPersona.email && (
                           <div className="flex items-center gap-1.5 mt-1.5 w-full">
-                            <p className="text-[11px] text-gray-400 truncate">{selectedPersona.email}</p>
+                            <p className="text-[14px] md:text-[11px] text-gray-400 truncate">{selectedPersona.email}</p>
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -461,7 +461,7 @@ const Household = () => {
                 
                 {/* Notes/Bio */}
                 <section>
-                  <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex justify-between items-center">
+                  <h4 className="text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex justify-between items-center">
                     AI Context Notes (10-Yr Log)
                   </h4>
                   {isEditing ? (
@@ -469,10 +469,10 @@ const Household = () => {
                       value={editForm.notes}
                       onChange={(e) => setEditForm({...editForm, notes: e.target.value})}
                       placeholder="Add rich context notes here..."
-                      className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-[12px] text-white focus:border-[#0077ff] focus:outline-none min-h-[100px] resize-none custom-scrollbar"
+                      className="w-full bg-black/20 border border-white/10 rounded-xl p-3 text-[14px] md:text-[12px] text-white focus:border-[#0077ff] focus:outline-none min-h-[100px] resize-none custom-scrollbar"
                     />
                   ) : (
-                    <div className="text-[12px] text-gray-300 leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5 shadow-inner min-h-[60px]">
+                    <div className="text-[14px] md:text-[12px] text-gray-300 leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5 shadow-inner min-h-[60px]">
                       {selectedPersona.notes || <span className="text-gray-500 italic">No notes provided...</span>}
                     </div>
                   )}
@@ -481,7 +481,7 @@ const Household = () => {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Dietary */}
                   <section>
-                    <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Dietary</h4>
+                    <h4 className="text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Dietary</h4>
                     {isEditing ? (
                       <TagInput 
                         tags={editForm.dietary}
@@ -492,17 +492,17 @@ const Household = () => {
                     ) : (
                       <div className="flex flex-col gap-1.5">
                         {selectedPersona.dietary.length > 0 ? selectedPersona.dietary.map((d, i) => (
-                          <div key={i} className="cursor-pointer text-[11px] font-bold text-blue-300 bg-blue-900/30 border border-blue-500/30 px-2 py-1.5 rounded-lg text-center shadow-sm transition-colors">
+                          <div key={i} className="cursor-pointer text-[14px] md:text-[11px] font-bold text-blue-300 bg-blue-900/30 border border-blue-500/30 px-2 py-1.5 rounded-lg text-center shadow-sm transition-colors">
                             {d}
                           </div>
-                        )) : <span className="text-[11px] text-gray-500 italic px-1">None</span>}
+                        )) : <span className="text-[14px] md:text-[11px] text-gray-500 italic px-1">None</span>}
                       </div>
                     )}
                   </section>
 
                   {/* Allergies */}
                   <section>
-                    <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Allergies</h4>
+                    <h4 className="text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Allergies</h4>
                     {isEditing ? (
                       <TagInput 
                         tags={editForm.allergies}
@@ -513,10 +513,10 @@ const Household = () => {
                     ) : (
                       <div className="flex flex-col gap-1.5">
                         {selectedPersona.allergies.length > 0 ? selectedPersona.allergies.map((a, i) => (
-                          <div key={i} className={`cursor-pointer text-[11px] font-bold px-2 py-1.5 rounded-lg text-center shadow-sm transition-colors ${a === 'None' ? 'text-gray-400 bg-white/5 border border-white/10' : 'text-red-300 bg-[#3f0f14] border border-red-500/30'}`}>
+                          <div key={i} className={`cursor-pointer text-[14px] md:text-[11px] font-bold px-2 py-1.5 rounded-lg text-center shadow-sm transition-colors ${a === 'None' ? 'text-gray-400 bg-white/5 border border-white/10' : 'text-red-300 bg-[#3f0f14] border border-red-500/30'}`}>
                             {a}
                           </div>
-                        )) : <span className="text-[11px] text-gray-500 italic px-1">None</span>}
+                        )) : <span className="text-[14px] md:text-[11px] text-gray-500 italic px-1">None</span>}
                       </div>
                     )}
                   </section>
@@ -541,7 +541,7 @@ const Household = () => {
                         <span key={i} className="cursor-pointer text-[10px] bg-[#042f1d] hover:bg-[#064e3b] text-emerald-300 border border-emerald-500/40 px-2.5 py-1.5 rounded-lg font-bold shadow-sm transition-colors">
                           {like}
                         </span>
-                      )) : <span className="text-[11px] text-gray-500 italic">None specified</span>}
+                      )) : <span className="text-[14px] md:text-[11px] text-gray-500 italic">None specified</span>}
                     </div>
                   )}
                 </section>
@@ -565,7 +565,7 @@ const Household = () => {
                         <span key={i} className="cursor-pointer text-[10px] bg-[#3f0f14] hover:bg-[#5a161c] text-red-300 border border-red-500/40 px-2.5 py-1.5 rounded-lg font-bold shadow-sm transition-colors">
                           {dislike}
                         </span>
-                      )) : <span className="text-[11px] text-gray-500 italic">None specified</span>}
+                      )) : <span className="text-[14px] md:text-[11px] text-gray-500 italic">None specified</span>}
                     </div>
                   )}
                 </section>

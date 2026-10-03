@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiArrowUp, FiAlertCircle, FiCheckCircle, FiInfo } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const quotes = [
   "It's not just about what's on your plate, but who's around it. — Honesti",
@@ -40,31 +41,12 @@ const initAudio = () => {
 };
 
 const playNotificationSound = () => {
-  if (!globalAudioCtx || globalAudioCtx.state === 'suspended') return;
-  try {
-    const osc = globalAudioCtx.createOscillator();
-    const gain = globalAudioCtx.createGain();
-    
-    osc.type = 'sine'; 
-    osc.frequency.setValueAtTime(880, globalAudioCtx.currentTime); // A5
-    osc.frequency.exponentialRampToValueAtTime(1760, globalAudioCtx.currentTime + 0.1); // Slide to A6
-    
-    gain.gain.setValueAtTime(0, globalAudioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.05, globalAudioCtx.currentTime + 0.05); // soft volume
-    gain.gain.exponentialRampToValueAtTime(0.001, globalAudioCtx.currentTime + 1);
-    
-    osc.connect(gain);
-    gain.connect(globalAudioCtx.destination);
-    
-    osc.start();
-    osc.stop(globalAudioCtx.currentTime + 1);
-  } catch (e) {
-    console.warn("Audio play failed", e);
-  }
+  // Notification sound removed as requested
 };
 
 const Home = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [greeting, setGreeting] = useState('');
   
@@ -170,19 +152,65 @@ const Home = () => {
         initial={{ x: 50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
-        className="w-full md:w-[380px] lg:w-[420px] h-full bg-transparent flex flex-col shrink-0 relative z-20 ml-auto pt-6 px-5 pb-6 overflow-hidden"
+        className="w-full md:w-[380px] lg:w-[420px] h-full bg-transparent flex flex-col shrink-0 relative z-20 ml-auto pt-2 px-3 pb-2 md:pt-6 md:px-5 md:pb-6 overflow-hidden"
       >
-        <div className="flex flex-col gap-4 h-full">
+        <div className="flex flex-col gap-3 md:gap-4 h-full">
           
-          {/* GROUP 1: Clean Greeting Header */}
-          <div className="shrink-0 self-start bg-black/40 backdrop-blur-md rounded-xl px-4 py-2 border border-white/5 shadow-lg ml-2 mt-2">
-            <h2 className="text-[20px] font-serif text-white font-medium tracking-tight drop-shadow-md">
-              {greeting}, Maya.
-            </h2>
+          {/* MOBILE ROW WRAPPER: Turns into 'contents' on desktop to preserve flex column order */}
+          <div className="w-full flex flex-col items-center justify-between shrink-0 md:contents order-first gap-3 md:gap-0 mt-2 md:mt-0">
+            
+            {/* GROUP 1: Clean Greeting Header */}
+            <div className="w-full md:w-auto h-[52px] md:h-auto flex items-center justify-center md:justify-start shrink-0 bg-black/40 backdrop-blur-md rounded-xl px-4 md:px-4 md:py-2 border border-white/5 shadow-lg md:ml-2 md:self-start md:order-1">
+              <h2 className="text-[16px] md:text-[20px] font-serif text-white font-medium tracking-tight drop-shadow-md truncate">
+                {greeting}, {user?.firstName || 'Local User'}.
+              </h2>
+            </div>
+
+            {/* GROUP 3: Highly Futuristic Attention-Seeking Chat Button */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: [0, -5, 0], opacity: 1 }}
+              transition={{ 
+                y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }, 
+                opacity: { delay: 0.8, duration: 0.5 } 
+              }}
+              className="w-full md:w-auto h-[52px] md:h-auto shrink-0 flex justify-center md:justify-end relative md:pr-2 md:pb-2 md:order-3 md:mt-auto md:mr-0"
+            >
+              {/* Massive breathing background glow to draw the eye */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-gradient-to-r from-[#0077ff]/30 to-[#ff6600]/30 rounded-full blur-[20px] animate-pulse pointer-events-none"></div>
+
+              <button onClick={() => navigate('/chat')} className="w-full md:w-auto h-full md:h-auto relative group p-[2px] rounded-xl md:rounded-full overflow-hidden active:scale-95 transition-all shadow-[0_0_25px_rgba(0,119,255,0.5)] hover:shadow-[0_0_40px_rgba(255,102,0,0.7)] z-10 cursor-pointer">
+                
+                {/* Thicker, brighter spinning conic gradient */}
+                <div className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_0%,#00000000_20%,#ff6600_40%,#0077ff_60%,#00000000_100%)] opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                
+                {/* Inner Button Core with glass sheen */}
+                <div className="w-full h-full relative bg-[#0b0f19] rounded-xl md:rounded-full px-5 md:px-7 md:py-3.5 flex items-center justify-center gap-2 md:gap-3 border border-white/10 overflow-hidden group-hover:bg-[#0b0f19]/90 transition-colors">
+                  
+                  {/* Sweeping Light reflection using Framer Motion */}
+                  <motion.div 
+                    animate={{ x: ['-200%', '300%'] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.5, ease: "linear" }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 w-1/2 pointer-events-none"
+                  />
+
+                  {/* Blinking Live Indicator */}
+                  <div className="relative flex items-center justify-center w-2.5 h-2.5 md:w-3 md:h-3">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-[#ff6600] animate-ping opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-[#ff6600] shadow-[0_0_12px_#ff6600]"></span>
+                  </div>
+                  
+                  {/* High-contrast Text */}
+                  <span className="z-10 bg-gradient-to-r from-blue-200 via-white to-orange-300 bg-clip-text text-transparent uppercase tracking-[0.25em] font-black text-[13px] md:text-[12px] drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                    Engage Honesti
+                  </span>
+                </div>
+              </button>
+            </motion.div>
           </div>
 
           {/* GROUP 2: Notifications List (Scrollable & Animated) */}
-          <div className="bg-[#0b0f19]/60 backdrop-blur-md border border-white/10 rounded-3xl p-4 shadow-lg flex flex-col flex-1 overflow-hidden">
+          <div className="bg-[#0b0f19]/60 backdrop-blur-md border border-white/10 rounded-2xl md:rounded-3xl p-3 md:p-4 shadow-lg flex flex-col flex-1 overflow-hidden min-h-[150px] md:order-2 mt-2 md:mt-0">
             <div className="flex justify-between items-center mb-3 px-1 shrink-0">
               <h4 className="text-xs font-bold text-white tracking-wide drop-shadow-md flex items-center gap-2">
                 Recent Updates
@@ -224,49 +252,6 @@ const Home = () => {
               </AnimatePresence>
             </div>
           </div>
-
-          {/* GROUP 3: Highly Futuristic Attention-Seeking Chat Button */}
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: [0, -5, 0], opacity: 1 }}
-            transition={{ 
-              y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }, 
-              opacity: { delay: 0.8, duration: 0.5 } 
-            }}
-            className="shrink-0 flex justify-end pr-2 pb-2 relative"
-          >
-            {/* Massive breathing background glow to draw the eye */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-gradient-to-r from-[#0077ff]/30 to-[#ff6600]/30 rounded-full blur-[20px] animate-pulse pointer-events-none"></div>
-
-            <button onClick={() => navigate('/chat')} className="relative group p-[2px] rounded-full overflow-hidden active:scale-95 transition-all shadow-[0_0_25px_rgba(0,119,255,0.5)] hover:shadow-[0_0_40px_rgba(255,102,0,0.7)] z-10 cursor-pointer">
-              
-              {/* Thicker, brighter spinning conic gradient */}
-              <div className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_0%,#00000000_20%,#ff6600_40%,#0077ff_60%,#00000000_100%)] opacity-90 group-hover:opacity-100 transition-opacity"></div>
-              
-              {/* Inner Button Core with glass sheen */}
-              <div className="relative bg-[#0b0f19] rounded-full px-7 py-3.5 flex items-center justify-center gap-3 border border-white/10 overflow-hidden group-hover:bg-[#0b0f19]/90 transition-colors">
-                
-                {/* Sweeping Light reflection using Framer Motion */}
-                <motion.div 
-                  animate={{ x: ['-200%', '300%'] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.5, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 w-1/2 pointer-events-none"
-                />
-
-                {/* Blinking Live Indicator */}
-                <div className="relative flex items-center justify-center w-3 h-3">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#ff6600] animate-ping opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#ff6600] shadow-[0_0_12px_#ff6600]"></span>
-                </div>
-                
-                {/* High-contrast Text */}
-                <span className="z-10 bg-gradient-to-r from-blue-200 via-white to-orange-300 bg-clip-text text-transparent uppercase tracking-[0.25em] font-black text-[12px] drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                  Engage Honesti
-                </span>
-              </div>
-            </button>
-          </motion.div>
-
         </div>
       </motion.div>
     </div>

@@ -153,13 +153,29 @@ const Pantry = () => {
       <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-white/10 pb-5 gap-5">
-          <div className="flex-1">
-            <h1 className="text-[28px] font-bold tracking-tight mb-1.5 drop-shadow-md">Smart Pantry</h1>
-            <p className="text-gray-300 text-[12px] font-medium drop-shadow-sm">Real-time inventory synced with your household diet and recipes.</p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-3 md:gap-5">
+          <div className="flex flex-row justify-between items-center w-full md:w-auto md:flex-1">
+            <div>
+              <h1 className="text-[22px] md:text-[28px] font-bold tracking-tight mb-0 md:mb-1.5 drop-shadow-md">Smart Pantry</h1>
+              <p className="hidden md:block text-gray-300 text-[12px] font-medium drop-shadow-sm">Real-time inventory synced with your household diet and recipes.</p>
+            </div>
+            <div className="md:hidden flex gap-2 shrink-0">
+              <button 
+                onClick={handleScanClick}
+                className="cursor-pointer bg-white/10 hover:bg-white/20 text-white px-3 py-2 rounded-lg text-[13px] font-bold transition-all flex items-center justify-center active:scale-95 border border-white/10"
+              >
+                <FiCamera size={16} />
+              </button>
+              <button 
+                onClick={openAddDrawer}
+                className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-[13px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center justify-center gap-1 active:scale-95 border border-blue-400/30"
+              >
+                <FiPlus size={16} /> Add
+              </button>
+            </div>
           </div>
           
-          <div className="w-full md:w-auto flex gap-3 shrink-0">
+          <div className="w-full md:w-auto flex gap-3 shrink-0 mt-1 md:mt-0">
             <div className="relative w-full md:w-64">
               <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
               <input 
@@ -173,13 +189,13 @@ const Pantry = () => {
             
             <button 
               onClick={handleScanClick}
-              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-[12px] font-bold transition-all flex items-center gap-1.5 active:scale-95 border border-white/10"
+              className="hidden md:flex cursor-pointer bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-[12px] font-bold transition-all items-center gap-1.5 active:scale-95 border border-white/10"
             >
               <FiCamera size={14} /> Scan Receipt
             </button>
             <button 
               onClick={openAddDrawer}
-              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 active:scale-95 border border-blue-400/30"
+              className="hidden md:flex cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all items-center gap-1.5 active:scale-95 border border-blue-400/30"
             >
               <FiPlus size={14} /> Add Item
             </button>
@@ -396,7 +412,7 @@ const Pantry = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-xl z-[100] flex items-center justify-center"
+              className="fixed inset-0 bg-black/80 backdrop-blur-xl z-[100] flex items-center justify-center p-4"
             >
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}

@@ -1,44 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { API_URL } from '../api';
+import { useAuth } from '../context/AuthContext';
 
 const ProtectedRoute = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const { user, loading } = useAuth();
 
-  useEffect(() => {
-    const verifyToken = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setIsAuthenticated(false);
-        return;
-      }
-
-      try {
-        // Fetching profile acts as our token verification since it requires authMiddleware
-        const res = await fetch(`${API_URL}/auth/profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
-        if (res.ok) {
-          // Token is valid and not expired
-          setIsAuthenticated(true);
-        } else {
-          // Token is invalid or expired
-          localStorage.removeItem('token');
-          setIsAuthenticated(false);
-        }
-      } catch (error) {
-        console.error("Token verification failed:", error);
-        setIsAuthenticated(false);
-      }
-    };
-
-    verifyToken();
-  }, []);
-
-  if (isAuthenticated === null) {
+  if (loading) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-[#0b0f19] text-white">
         <div className="flex flex-col items-center gap-4">
@@ -51,7 +18,7 @@ const ProtectedRoute = () => {
     );
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+  return user ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;

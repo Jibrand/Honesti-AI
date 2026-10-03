@@ -527,10 +527,10 @@ const Cookbook = () => {
       <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-white/10 pb-5 gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-3 md:gap-5">
           <div className="flex-1">
-            <h1 className="text-[28px] font-bold tracking-tight mb-1.5 drop-shadow-md">Global Cookbook</h1>
-            <p className="text-gray-300 text-[12px] font-medium drop-shadow-sm">Context-aware recipes dynamically modified for your household's 10-year persona history.</p>
+            <h1 className="text-[22px] md:text-[28px] font-bold tracking-tight mb-0 md:mb-1.5 drop-shadow-md">Global Cookbook</h1>
+            <p className="hidden md:block text-gray-300 text-[12px] font-medium drop-shadow-sm">Context-aware recipes dynamically modified for your household's 10-year persona history.</p>
           </div>
           
           <div className="w-full md:w-auto flex gap-3 shrink-0">
@@ -546,9 +546,9 @@ const Cookbook = () => {
             </div>
             <button 
               onClick={() => openDrawer()}
-              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 active:scale-95 border border-blue-400/30"
+              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-3 py-2 md:px-4 md:py-2 rounded-lg text-[13px] md:text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1 md:gap-1.5 active:scale-95 border border-blue-400/30 shrink-0"
             >
-              <FiPlus size={14} /> Add Recipe
+              <FiPlus size={16} /><span className="hidden sm:inline">Add</span><span className="hidden md:inline">&nbsp;Recipe</span>
             </button>
           </div>
         </div>
@@ -559,7 +559,7 @@ const Cookbook = () => {
             <button 
               key={i} 
               onClick={() => setActiveFilter(filter)}
-              className={`cursor-pointer whitespace-nowrap px-4 py-1.5 rounded-full text-[11px] font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
+              className={`cursor-pointer whitespace-nowrap px-4 py-1.5 rounded-full text-[14px] md:text-[11px] font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
             >
               {filter}
             </button>
@@ -599,13 +599,13 @@ const Cookbook = () => {
                       >
                         <button 
                           onClick={(e) => { e.stopPropagation(); openDrawer(recipe); setIsEditing(true); }}
-                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[11px] font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[14px] md:text-[11px] font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
                         >
                           <FiEdit2 size={12}/> Edit Recipe
                         </button>
                         <button 
                           onClick={(e) => { e.stopPropagation(); handleDelete(recipe.id); }}
-                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[11px] font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[14px] md:text-[11px] font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
                         >
                           <FiTrash2 size={12}/> Delete
                         </button>
@@ -622,14 +622,14 @@ const Cookbook = () => {
                   {/* Match Badge */}
                   <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 bg-[#042f1d]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-300 px-2.5 py-1 rounded-lg shadow-lg">
                     <FiCheckCircle size={12} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{recipe.matchScore}% Household Match</span>
+                    <span className="text-[12px] md:text-[10px] font-bold uppercase tracking-wider">{recipe.matchScore}% Household Match</span>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-5 flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-2 gap-2">
-                    <h3 className="text-[16px] font-bold tracking-tight group-hover:text-[#0077ff] transition-colors leading-tight">{recipe.title}</h3>
+                    <h3 className="text-[18px] md:text-[16px] font-bold tracking-tight group-hover:text-[#0077ff] transition-colors leading-tight">{recipe.title}</h3>
                     {recipe.variation && (
                       <span className="flex items-center gap-1.5 text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded bg-[#0077ff]/20 border border-[#0077ff]/40 text-[#b3d4ff] shadow-sm shrink-0 whitespace-nowrap">
                         {recipe.flag && <img src={`https://flagcdn.com/w20/${recipe.flag}.png`} alt="flag" className="w-3.5 h-auto rounded-[2px] shadow-sm" />}
@@ -647,7 +647,7 @@ const Cookbook = () => {
                   <div className="space-y-2 mb-4 flex-1">
                     {recipe.matchedFor.length > 0 && (
                       <div className="flex gap-1.5 flex-wrap">
-                        <span className="text-[9px] bg-blue-900/30 text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
+                        <span className="text-[11px] md:text-[9px] bg-blue-900/30 text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
                           Perfect for: {recipe.matchedFor.join(', ')}
                         </span>
                       </div>
@@ -655,7 +655,7 @@ const Cookbook = () => {
                     {recipe.warnings.length > 0 && (
                       <div className="flex flex-col gap-1.5 mt-2">
                         {recipe.warnings.map((w, i) => (
-                          <span key={i} className="text-[9px] bg-[#3f0f14] text-red-300 border border-red-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
+                          <span key={i} className="text-[11px] md:text-[9px] bg-[#3f0f14] text-red-300 border border-red-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
                             <FiAlertTriangle size={10} /> {w}
                           </span>
                         ))}
@@ -664,7 +664,7 @@ const Cookbook = () => {
                   </div>
 
                   <div className="mt-auto pt-4 border-t border-white/5 flex justify-between items-center text-[#0077ff]">
-                    <span className="text-[11px] font-bold uppercase tracking-widest">View AI Modifications</span>
+                    <span className="text-[14px] md:text-[11px] font-bold uppercase tracking-widest">View AI Modifications</span>
                     <FiChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -698,7 +698,7 @@ const Cookbook = () => {
                 {isEditing ? (
                   <>
                     <img src={editForm.image} alt="Upload" className="w-full h-full object-cover brightness-50" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white/50 cursor-pointer hover:text-white transition-colors">
+                    <div className="hidden md:flex absolute inset-0 flex-col items-center justify-center text-white/50 cursor-pointer hover:text-white transition-colors">
                       <FiImage size={32} className="mb-2" />
                       <span className="text-[12px] font-bold tracking-widest uppercase">Change Image URL</span>
                     </div>
@@ -749,7 +749,7 @@ const Cookbook = () => {
                           value={editForm.flag || ''}
                           onChange={(e) => setEditForm({...editForm, flag: e.target.value})}
                           placeholder="Flag Code (e.g. it, mx)"
-                          className="w-32 bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-3 py-1.5 text-[12px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
+                          className="w-24 md:w-32 bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-2 md:px-3 py-1.5 text-[12px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
                         />
                       </div>
                     </div>
@@ -801,7 +801,7 @@ const Cookbook = () => {
                 {/* Personalized Badges IN THE DRAWER */}
                 {!isEditing && (selectedRecipe.matchedFor.length > 0 || selectedRecipe.warnings.length > 0) && (
                   <section className="flex flex-col gap-2 bg-white/5 p-4 rounded-xl border border-white/10">
-                    <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Household Impact</h4>
+                    <h4 className="text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Household Impact</h4>
                     {selectedRecipe.matchedFor.length > 0 && (
                       <span className="text-[11px] text-blue-300 font-bold flex items-center gap-2">
                         <FiCheckCircle size={14} className="text-blue-500"/> Perfect for: {selectedRecipe.matchedFor.join(', ')}
@@ -816,7 +816,7 @@ const Cookbook = () => {
                 )}
 
                 {/* AI Modifications (The Magic) */}
-                <section className={`rounded-xl p-4 shadow-inner relative overflow-hidden ${isEditing ? '' : 'bg-gradient-to-br from-[#0077ff]/10 to-purple-500/10 border border-[#0077ff]/30'}`}>
+                <section className={`rounded-xl shadow-inner relative overflow-hidden ${isEditing ? "p-0 md:p-4" : "p-4"} ${isEditing ? '' : 'bg-gradient-to-br from-[#0077ff]/10 to-purple-500/10 border border-[#0077ff]/30'}`}>
                   {!isEditing && (
                     <div className="absolute -right-4 -top-4 text-[#0077ff]/10">
                       <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
@@ -843,7 +843,7 @@ const Cookbook = () => {
                 {isEditing && (
                   <section className="space-y-4">
                     <div>
-                      <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Perfect For (Household Members)</h4>
+                      <h4 className="text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Perfect For (Household Members)</h4>
                       <TagInput 
                         tags={editForm.matchedFor}
                         setTags={(newTags) => setEditForm({ ...editForm, matchedFor: newTags })}
@@ -852,7 +852,7 @@ const Cookbook = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Warnings</h4>
+                      <h4 className="text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Warnings</h4>
                       <TagInput 
                         tags={editForm.warnings}
                         setTags={(newTags) => setEditForm({ ...editForm, warnings: newTags })}
@@ -865,7 +865,7 @@ const Cookbook = () => {
 
                 {/* Ingredients */}
                 <section>
-                  <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2 flex justify-between">
+                  <h4 className="text-[14px] md:text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2 flex justify-between">
                     Smart Grocery List
                   </h4>
                   {isEditing ? (
@@ -878,7 +878,7 @@ const Cookbook = () => {
                   ) : (
                     <ul className="space-y-3">
                       {(selectedRecipe.availableVariations?.[activeVariationIndex]?.ingredients || selectedRecipe.ingredients).map((ing, i) => (
-                        <li key={i} className="flex items-center justify-between text-[13px] text-gray-200">
+                        <li key={i} className="flex items-center justify-between text-[14px] md:text-[13px] text-gray-200">
                           <div className="flex items-center gap-3">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
                             {ing}
@@ -892,7 +892,7 @@ const Cookbook = () => {
 
                 {/* Instructions */}
                 <section>
-                  <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
+                  <h4 className="text-[14px] md:text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
                     Step-by-Step
                   </h4>
                   {isEditing ? (
@@ -915,7 +915,7 @@ const Cookbook = () => {
                       ))}
                       <button 
                         onClick={() => setEditForm({...editForm, instructions: [...editForm.instructions, '']})}
-                        className="text-[11px] font-bold text-[#0077ff] flex items-center gap-1 hover:underline"
+                        className="text-[14px] md:text-[11px] font-bold text-[#0077ff] flex items-center gap-1 hover:underline"
                       >
                         <FiPlus /> Add Step
                       </button>
@@ -927,7 +927,7 @@ const Cookbook = () => {
                           <div className="w-6 h-6 shrink-0 rounded-full bg-[#0077ff]/20 text-[#0077ff] flex items-center justify-center text-[10px] font-black border border-[#0077ff]/30">
                             {i + 1}
                           </div>
-                          <p className="text-[13px] text-gray-300 leading-relaxed pt-0.5">{step}</p>
+                          <p className="text-[14px] md:text-[13px] text-gray-300 leading-relaxed pt-0.5">{step}</p>
                         </div>
                       ))}
                     </div>
@@ -1155,7 +1155,7 @@ const Cookbook = () => {
 
               {/* Avatar Grid */}
               <div className="w-full mb-5">
-                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">Household Feedback</label>
+                <label className="block text-[14px] md:text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">Household Feedback</label>
                 <div className="flex flex-wrap justify-center gap-4 mb-2">
                   {selectedRecipe?.matchedFor.map((persona) => (
                     <div key={persona} className="flex flex-col items-center gap-2">

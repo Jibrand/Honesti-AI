@@ -156,13 +156,13 @@ const Feedback = () => {
         {/* Feedback List (Table) */}
         <div className="bg-[#0f1523]/60 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse whitespace-nowrap md:whitespace-normal">
               <thead>
-                <tr className="border-b border-white/10 text-[9px] uppercase tracking-widest text-gray-400 bg-white/5">
-                  <th className="px-4 py-3 font-bold">Meal</th>
-                  <th className="px-4 py-3 font-bold">Date</th>
-                  <th className="px-4 py-3 font-bold">Status</th>
-                  <th className="px-4 py-3 font-bold text-right"></th>
+                <tr className="border-b border-white/10 text-[12px] md:text-[9px] uppercase tracking-widest text-gray-400 bg-white/5">
+                  <th className="px-4 py-3 font-bold whitespace-nowrap md:whitespace-normal">Meal</th>
+                  <th className="px-4 py-3 font-bold whitespace-nowrap md:whitespace-normal">Date</th>
+                  <th className="px-4 py-3 font-bold whitespace-nowrap md:whitespace-normal">Status</th>
+                  <th className="px-4 py-3 font-bold text-right whitespace-nowrap md:whitespace-normal"></th>
                 </tr>
               </thead>
               <tbody>
@@ -181,22 +181,22 @@ const Feedback = () => {
                         onClick={() => setSelectedFeedback(item)}
                         className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer group"
                       >
-                        <td className="px-4 py-3">
-                          <p className="text-[12px] font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
+                        <td className="px-4 py-3 whitespace-nowrap md:whitespace-normal">
+                          <p className="text-[14px] md:text-[12px] font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
                         </td>
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium">
+                        <td className="px-4 py-3 whitespace-nowrap md:whitespace-normal">
+                          <div className="flex items-center gap-1.5 text-[13px] md:text-[10px] text-gray-400 font-medium">
                             <FiClock size={10} /> {item.date}
                           </div>
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3 whitespace-nowrap md:whitespace-normal">
                           {isComplete ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[13px] md:text-[10px] font-bold">
                               <FiCheckCircle size={10} /> Done
                             </span>
                           ) : (
                             <div className="flex items-center gap-2">
-                              <span className="text-[10px] text-orange-400 font-bold">Waiting on:</span>
+                              <span className="text-[13px] md:text-[10px] text-orange-400 font-bold">Waiting on:</span>
                               <div className="flex -space-x-1.5">
                                 {pendingPersonas.map((p, i) => (
                                   <div 
@@ -272,7 +272,7 @@ const Feedback = () => {
                       <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex flex-col gap-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-[9px] shadow-sm border border-[#0b0f19]">
+                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-[13px] md:text-[9px] shadow-sm border border-[#0b0f19]">
                               {persona.name.substring(0, 2).toUpperCase()}
                             </div>
                             <span className="text-[11px] font-bold text-white">{persona.name}</span>
