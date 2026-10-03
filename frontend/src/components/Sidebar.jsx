@@ -27,9 +27,6 @@ const Sidebar = () => {
 
   const navItems = [
     { name: 'Home', path: '/home', icon: <FiHome /> },
-    { name: 'Example', path: '/example', icon: <FiFile /> },
-    { name: 'New Chat', path: '/chat', icon: <FiMessageSquare /> },
-    { name: 'Old Chats', path: '/chat-history', icon: <FiClock /> },
     { name: 'Personas', path: '/household', icon: <FiUsers /> },
     { name: 'Pantry', path: '/pantry', icon: <FiShoppingBag /> },
     { name: 'Global Cookbook', path: '/cookbook', icon: <FiGlobe /> },

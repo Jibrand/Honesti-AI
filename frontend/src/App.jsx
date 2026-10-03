@@ -43,7 +43,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
               <Route path="/home" element={<Home />} />
-              <Route path="/chat" element={<Chat />} />
+              <Route path="/chat" element={<ChatHistory />} />
               <Route path="/example" element={<Example />} />
               <Route path="/chat-history" element={<ChatHistory />} />
               <Route path="/profile" element={<Profile />} />
