@@ -143,13 +143,13 @@ const Feedback = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/80 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
+      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-3 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-white/10 pb-5 gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-3 md:gap-5">
           <div className="flex-1">
-            <h1 className="text-[28px] font-bold tracking-tight mb-1.5 drop-shadow-md">Household Feedback</h1>
-            <p className="text-gray-300 text-[12px] font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
+            <h1 className="text-[20px] md:text-[28px] font-bold tracking-tight mb-1 md:mb-1.5 drop-shadow-md">Household Feedback</h1>
+            <p className="text-gray-300 text-[10px] md:text-[12px] font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
           </div>
         </div>
 

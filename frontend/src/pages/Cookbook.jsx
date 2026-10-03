@@ -524,42 +524,42 @@ const Cookbook = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/70 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
+      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-2.5 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-white/10 pb-5 gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-3 md:mb-8 border-b border-white/10 pb-2.5 md:pb-5 gap-2 md:gap-5">
           <div className="flex-1">
-            <h1 className="text-[28px] font-bold tracking-tight mb-1.5 drop-shadow-md">Global Cookbook</h1>
-            <p className="text-gray-300 text-[12px] font-medium drop-shadow-sm">Context-aware recipes dynamically modified for your household's 10-year persona history.</p>
+            <h1 className="text-[18px] md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-1.5 drop-shadow-md">Global Cookbook</h1>
+            <p className="text-gray-300 text-[9px] md:text-[12px] font-medium drop-shadow-sm">Context-aware recipes dynamically modified for your household's 10-year persona history.</p>
           </div>
           
-          <div className="w-full md:w-auto flex gap-3 shrink-0">
+          <div className="w-full md:w-auto flex gap-2 md:gap-3 shrink-0">
             <div className="relative w-full md:w-64">
-              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
+              <FiSearch className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} className="md:w-3.5 md:h-3.5" />
               <input 
                 type="text" 
                 placeholder="Search recipes, ingredients..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#0f1523]/80 backdrop-blur-md border border-white/10 rounded-lg pl-9 pr-4 py-2.5 text-[12px] text-white focus:border-[#0077ff] focus:outline-none transition-colors shadow-inner"
+                className="w-full bg-[#0f1523]/80 backdrop-blur-md border border-white/10 rounded-md md:rounded-lg pl-7 md:pl-9 pr-3 md:pr-4 py-1.5 md:py-2.5 text-[10px] md:text-[12px] text-white focus:border-[#0077ff] focus:outline-none transition-colors shadow-inner"
               />
             </div>
             <button 
               onClick={() => openDrawer()}
-              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 active:scale-95 border border-blue-400/30"
+              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-2.5 md:px-4 py-1 md:py-2 rounded-md md:rounded-lg text-[10px] md:text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 active:scale-95 border border-blue-400/30"
             >
-              <FiPlus size={14} /> Add Recipe
+              <FiPlus size={12} className="md:w-3.5 md:h-3.5" /> Add Recipe
             </button>
           </div>
         </div>
 
         {/* Filters/Pills */}
-        <div className="flex gap-2 overflow-x-auto custom-scrollbar pb-2 mb-6">
+        <div className="flex gap-1.5 md:gap-2 overflow-x-auto custom-scrollbar pb-1.5 md:pb-2 mb-4 md:mb-6">
           {filters.map((filter, i) => (
             <button 
               key={i} 
               onClick={() => setActiveFilter(filter)}
-              className={`cursor-pointer whitespace-nowrap px-4 py-1.5 rounded-full text-[11px] font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
+              className={`cursor-pointer whitespace-nowrap px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[9px] md:text-[11px] font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
             >
               {filter}
             </button>
@@ -568,7 +568,7 @@ const Cookbook = () => {
 
         {/* Recipe Grid */}
         <AnimatePresence>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
             {filteredRecipes.map((recipe) => (
               <motion.div 
                 key={recipe.id}
@@ -578,15 +578,15 @@ const Cookbook = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 whileHover={{ y: -6, borderColor: 'rgba(0, 119, 255, 0.4)' }}
                 onClick={() => openDrawer(recipe)}
-                className="cursor-pointer bg-[#0f1523]/60 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-visible shadow-2xl group flex flex-col transition-all duration-300 relative"
+                className="cursor-pointer bg-[#0f1523]/60 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-2xl overflow-visible shadow-2xl group flex flex-col transition-all duration-300 relative"
               >
                 {/* 3 Dots Menu */}
-                <div className="absolute top-3 right-3 z-30">
+                <div className="absolute top-2.5 md:top-3 right-2.5 md:right-3 z-30">
                   <button 
                     onClick={(e) => { e.stopPropagation(); setMenuOpenId(menuOpenId === recipe.id ? null : recipe.id); }}
-                    className="cursor-pointer p-2 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full text-white transition-colors border border-white/10"
+                    className="cursor-pointer p-1.5 md:p-2 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full text-white transition-colors border border-white/10"
                   >
-                    <FiMoreHorizontal size={14} />
+                    <FiMoreHorizontal size={12} className="md:w-3.5 md:h-3.5" />
                   </button>
                   <AnimatePresence>
                     {menuOpenId === recipe.id && (
@@ -615,21 +615,21 @@ const Cookbook = () => {
                 </div>
 
                 {/* Image Header */}
-                <div className="relative h-48 w-full overflow-hidden rounded-t-2xl">
+                <div className="relative h-32 md:h-48 w-full overflow-hidden rounded-t-xl md:rounded-t-2xl">
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
                   <img src={recipe.image} alt={recipe.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   
                   {/* Match Badge */}
-                  <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 bg-[#042f1d]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-300 px-2.5 py-1 rounded-lg shadow-lg">
-                    <FiCheckCircle size={12} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{recipe.matchScore}% Household Match</span>
+                  <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 z-20 flex items-center gap-1.5 bg-[#042f1d]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-300 px-2 md:px-2.5 py-0.5 md:py-1 rounded-md md:rounded-lg shadow-lg">
+                    <FiCheckCircle size={10} className="md:w-3 md:h-3" />
+                    <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider">{recipe.matchScore}% Match</span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-5 flex-1 flex flex-col">
+                <div className="p-3 md:p-5 flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-2 gap-2">
-                    <h3 className="text-[16px] font-bold tracking-tight group-hover:text-[#0077ff] transition-colors leading-tight">{recipe.title}</h3>
+                    <h3 className="text-[14px] md:text-[16px] font-bold tracking-tight group-hover:text-[#0077ff] transition-colors leading-tight">{recipe.title}</h3>
                     {recipe.variation && (
                       <span className="flex items-center gap-1.5 text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded bg-[#0077ff]/20 border border-[#0077ff]/40 text-[#b3d4ff] shadow-sm shrink-0 whitespace-nowrap">
                         {recipe.flag && <img src={`https://flagcdn.com/w20/${recipe.flag}.png`} alt="flag" className="w-3.5 h-auto rounded-[2px] shadow-sm" />}
