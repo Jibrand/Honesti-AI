@@ -193,7 +193,7 @@ const TagInput = ({ tags, setTags, placeholder, colorTheme }) => {
   };
 
   return (
-    <div className={`w-full bg-black/20 border border-white/10 rounded-xl p-2.5 flex flex-wrap gap-2 transition-colors focus-within:border-white/30`}>
+    <div className={`w-full bg-black/20 border border-white/10 rounded-xl p-4 flex flex-wrap gap-4 transition-colors focus-within:border-white/30`}>
       <AnimatePresence>
         {tags.map((tag, index) => (
           <motion.span 
@@ -201,7 +201,7 @@ const TagInput = ({ tags, setTags, placeholder, colorTheme }) => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             key={index} 
-            className={`flex items-center gap-1.5 text-[10px] bg-white/10 text-white border border-white/20 px-2 py-1 rounded-md font-bold shadow-sm`}
+            className={`flex items-center gap-3 text-[15px] bg-white/10 text-white border border-white/20 px-4 py-2 rounded-md font-bold shadow-sm`}
           >
             {tag}
             <button type="button" onClick={() => removeTag(index)} className="hover:text-red-400 transition-colors p-0.5 rounded-full hover:bg-black/20">
@@ -216,7 +216,7 @@ const TagInput = ({ tags, setTags, placeholder, colorTheme }) => {
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={tags.length === 0 ? placeholder : "Add more (press Enter)..."}
-        className="flex-1 min-w-[130px] bg-transparent text-[11px] text-white focus:outline-none placeholder:text-gray-500 py-1"
+        className="flex-1 min-w-[130px] bg-transparent text-base text-white focus:outline-none placeholder:text-gray-500 py-1"
       />
     </div>
   );
@@ -524,42 +524,42 @@ const Cookbook = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/70 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-2.5 md:p-8">
+      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-4 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-3 md:mb-8 border-b border-white/10 pb-2.5 md:pb-5 gap-2 md:gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-4 md:gap-5">
           <div className="flex-1">
-            <h1 className="text-[18px] md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-1.5 drop-shadow-md">Global Cookbook</h1>
-            <p className="text-gray-300 text-[9px] md:text-[12px] font-medium drop-shadow-sm">Context-aware recipes dynamically modified for your household's 10-year persona history.</p>
+            <h1 className="text-xl md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-5 drop-shadow-md">Global Cookbook</h1>
+            <p className="text-gray-300 text-base md:text-base font-medium drop-shadow-sm">Context-aware recipes dynamically modified for your household's 10-year persona history.</p>
           </div>
           
-          <div className="w-full md:w-auto flex gap-2 md:gap-3 shrink-0">
+          <div className="w-full md:w-auto flex gap-4 md:gap-5 shrink-0">
             <div className="relative w-full md:w-64">
-              <FiSearch className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} className="md:w-3.5 md:h-3.5" />
+              <FiSearch className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} className="md:w-5 md:h-5" />
               <input 
                 type="text" 
                 placeholder="Search recipes, ingredients..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#0f1523]/80 backdrop-blur-md border border-white/10 rounded-md md:rounded-lg pl-7 md:pl-9 pr-3 md:pr-4 py-1.5 md:py-2.5 text-[10px] md:text-[12px] text-white focus:border-[#0077ff] focus:outline-none transition-colors shadow-inner"
+                className="w-full bg-[#0f1523]/80 backdrop-blur-md border border-white/10 rounded-md md:rounded-lg pl-7 md:pl-9 pr-3 md:pr-4 py-2 md:py-2.5 text-[15px] md:text-base text-white focus:border-[#0077ff] focus:outline-none transition-colors shadow-inner"
               />
             </div>
             <button 
               onClick={() => openDrawer()}
-              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-2.5 md:px-4 py-1 md:py-2 rounded-md md:rounded-lg text-[10px] md:text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 active:scale-95 border border-blue-400/30"
+              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 md:px-4 py-2 md:py-2 rounded-md md:rounded-lg text-[15px] md:text-base font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-3 active:scale-95 border border-blue-400/30"
             >
-              <FiPlus size={12} className="md:w-3.5 md:h-3.5" /> Add Recipe
+              <FiPlus size={12} className="md:w-5 md:h-5" /> Add Recipe
             </button>
           </div>
         </div>
 
         {/* Filters/Pills */}
-        <div className="flex gap-1.5 md:gap-2 overflow-x-auto custom-scrollbar pb-1.5 md:pb-2 mb-4 md:mb-6">
+        <div className="flex gap-3 md:gap-4 overflow-x-auto custom-scrollbar pb-3 md:pb-2 mb-4 md:mb-6">
           {filters.map((filter, i) => (
             <button 
               key={i} 
               onClick={() => setActiveFilter(filter)}
-              className={`cursor-pointer whitespace-nowrap px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[9px] md:text-[11px] font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
+              className={`cursor-pointer whitespace-nowrap px-5 md:px-4 py-2 md:py-2 rounded-full text-base md:text-base font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
             >
               {filter}
             </button>
@@ -568,7 +568,7 @@ const Cookbook = () => {
 
         {/* Recipe Grid */}
         <AnimatePresence>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
             {filteredRecipes.map((recipe) => (
               <motion.div 
                 key={recipe.id}
@@ -581,12 +581,12 @@ const Cookbook = () => {
                 className="cursor-pointer bg-[#0f1523]/60 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-2xl overflow-visible shadow-2xl group flex flex-col transition-all duration-300 relative"
               >
                 {/* 3 Dots Menu */}
-                <div className="absolute top-2.5 md:top-3 right-2.5 md:right-3 z-30">
+                <div className="absolute top-4 md:top-5 right-2.5 md:right-3 z-30">
                   <button 
                     onClick={(e) => { e.stopPropagation(); setMenuOpenId(menuOpenId === recipe.id ? null : recipe.id); }}
-                    className="cursor-pointer p-1.5 md:p-2 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full text-white transition-colors border border-white/10"
+                    className="cursor-pointer p-1.5 md:p-4 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full text-white transition-colors border border-white/10"
                   >
-                    <FiMoreHorizontal size={12} className="md:w-3.5 md:h-3.5" />
+                    <FiMoreHorizontal size={12} className="md:w-5 md:h-5" />
                   </button>
                   <AnimatePresence>
                     {menuOpenId === recipe.id && (
@@ -599,13 +599,13 @@ const Cookbook = () => {
                       >
                         <button 
                           onClick={(e) => { e.stopPropagation(); openDrawer(recipe); setIsEditing(true); }}
-                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[11px] font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-base font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
                         >
                           <FiEdit2 size={12}/> Edit Recipe
                         </button>
                         <button 
                           onClick={(e) => { e.stopPropagation(); handleDelete(recipe.id); }}
-                          className="cursor-pointer w-full text-left px-4 py-2.5 text-[11px] font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-base font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
                         >
                           <FiTrash2 size={12}/> Delete
                         </button>
@@ -620,42 +620,42 @@ const Cookbook = () => {
                   <img src={recipe.image} alt={recipe.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   
                   {/* Match Badge */}
-                  <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 z-20 flex items-center gap-1.5 bg-[#042f1d]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-300 px-2 md:px-2.5 py-0.5 md:py-1 rounded-md md:rounded-lg shadow-lg">
-                    <FiCheckCircle size={10} className="md:w-3 md:h-3" />
-                    <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider">{recipe.matchScore}% Match</span>
+                  <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 z-20 flex items-center gap-3 bg-[#042f1d]/90 backdrop-blur-md border border-emerald-500/40 text-emerald-300 px-4 md:px-4 py-0.5 md:py-2 rounded-md md:rounded-lg shadow-lg">
+                    <FiCheckCircle size={10} className="md:w-4 md:h-3" />
+                    <span className="text-[15px] md:text-[15px] font-bold uppercase tracking-wider">{recipe.matchScore}% Match</span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-3 md:p-5 flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-2 gap-2">
-                    <h3 className="text-[14px] md:text-[16px] font-bold tracking-tight group-hover:text-[#0077ff] transition-colors leading-tight">{recipe.title}</h3>
+                <div className="p-5 md:p-5 flex-1 flex flex-col">
+                  <div className="flex justify-between items-start mb-4 gap-2">
+                    <h3 className="text-base md:text-[16px] font-bold tracking-tight group-hover:text-[#0077ff] transition-colors leading-tight">{recipe.title}</h3>
                     {recipe.variation && (
-                      <span className="flex items-center gap-1.5 text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded bg-[#0077ff]/20 border border-[#0077ff]/40 text-[#b3d4ff] shadow-sm shrink-0 whitespace-nowrap">
-                        {recipe.flag && <img src={`https://flagcdn.com/w20/${recipe.flag}.png`} alt="flag" className="w-3.5 h-auto rounded-[2px] shadow-sm" />}
+                      <span className="flex items-center gap-3 text-base font-bold tracking-wider uppercase px-4 py-2 rounded bg-[#0077ff]/20 border border-[#0077ff]/40 text-[#b3d4ff] shadow-sm shrink-0 whitespace-nowrap">
+                        {recipe.flag && <img src={`https://flagcdn.com/w20/${recipe.flag}.png`} alt="flag" className="w-5 h-auto rounded-[2px] shadow-sm" />}
                         {recipe.variation}
                       </span>
                     )}
                   </div>
                   
-                  <div className="flex gap-4 mb-4 text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
-                    <span className="flex items-center gap-1.5"><FiClock size={12}/> {recipe.time}</span>
-                    <span className="flex items-center gap-1.5"><FiUsers size={12}/> {recipe.difficulty}</span>
+                  <div className="flex gap-4 mb-4 text-[15px] text-gray-400 font-semibold uppercase tracking-wider">
+                    <span className="flex items-center gap-3"><FiClock size={12}/> {recipe.time}</span>
+                    <span className="flex items-center gap-3"><FiUsers size={12}/> {recipe.difficulty}</span>
                   </div>
 
                   {/* AI Context Tags */}
                   <div className="space-y-2 mb-4 flex-1">
                     {recipe.matchedFor.length > 0 && (
-                      <div className="flex gap-1.5 flex-wrap">
-                        <span className="text-[9px] bg-blue-900/30 text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
+                      <div className="flex gap-3 flex-wrap">
+                        <span className="text-base bg-blue-900/30 text-blue-300 border border-blue-500/30 px-4 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
                           Perfect for: {recipe.matchedFor.join(', ')}
                         </span>
                       </div>
                     )}
                     {recipe.warnings.length > 0 && (
-                      <div className="flex flex-col gap-1.5 mt-2">
+                      <div className="flex flex-col gap-3 mt-2">
                         {recipe.warnings.map((w, i) => (
-                          <span key={i} className="text-[9px] bg-[#3f0f14] text-red-300 border border-red-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
+                          <span key={i} className="text-base bg-[#3f0f14] text-red-300 border border-red-500/30 px-4 py-0.5 rounded flex items-center gap-1 font-bold shadow-sm">
                             <FiAlertTriangle size={10} /> {w}
                           </span>
                         ))}
@@ -664,7 +664,7 @@ const Cookbook = () => {
                   </div>
 
                   <div className="mt-auto pt-4 border-t border-white/5 flex justify-between items-center text-[#0077ff]">
-                    <span className="text-[11px] font-bold uppercase tracking-widest">View AI Modifications</span>
+                    <span className="text-base font-bold uppercase tracking-widest">View AI Modifications</span>
                     <FiChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -700,7 +700,7 @@ const Cookbook = () => {
                     <img src={editForm.image} alt="Upload" className="w-full h-full object-cover brightness-50" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-white/50 cursor-pointer hover:text-white transition-colors">
                       <FiImage size={32} className="mb-2" />
-                      <span className="text-[12px] font-bold tracking-widest uppercase">Change Image URL</span>
+                      <span className="text-base font-bold tracking-widest uppercase">Change Image URL</span>
                     </div>
                   </>
                 ) : (
@@ -709,18 +709,18 @@ const Cookbook = () => {
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/40 to-transparent pointer-events-none"></div>
                 
-                <div className="absolute top-5 right-5 flex gap-2 z-20">
+                <div className="absolute top-5 right-5 flex gap-4 z-20">
                   {!isAdding && !isEditing && (
                     <button 
                       onClick={() => setIsEditing(true)}
-                      className="cursor-pointer p-2 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full text-white transition-colors border border-white/20"
+                      className="cursor-pointer p-4 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full text-white transition-colors border border-white/20"
                     >
                       <FiEdit2 size={16} />
                     </button>
                   )}
                   <button 
                     onClick={closeDrawer} 
-                    className="cursor-pointer p-2 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full text-white transition-colors border border-white/20"
+                    className="cursor-pointer p-4 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full text-white transition-colors border border-white/20"
                   >
                     <FiX size={16} />
                   </button>
@@ -728,13 +728,13 @@ const Cookbook = () => {
 
                 <div className="absolute bottom-4 left-5 right-5 z-20">
                   {isEditing ? (
-                    <div className="flex flex-col gap-2 mb-2">
+                    <div className="flex flex-col gap-4 mb-2">
                       <input 
                         type="text" 
                         value={editForm.title}
                         onChange={(e) => setEditForm({...editForm, title: e.target.value})}
                         placeholder="Recipe Title"
-                        className="w-full bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-3 py-1.5 text-lg font-bold text-white focus:border-[#0077ff] focus:outline-none"
+                        className="w-full bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-5 py-2 text-lg font-bold text-white focus:border-[#0077ff] focus:outline-none"
                       />
                       <div className="flex gap-2">
                         <input 
@@ -742,14 +742,14 @@ const Cookbook = () => {
                           value={editForm.variation || ''}
                           onChange={(e) => setEditForm({...editForm, variation: e.target.value})}
                           placeholder="Variation Tag (e.g. Italian)"
-                          className="flex-1 bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-3 py-1.5 text-[12px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
+                          className="flex-1 bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-5 py-2 text-base font-bold text-white focus:border-[#0077ff] focus:outline-none"
                         />
                         <input 
                           type="text" 
                           value={editForm.flag || ''}
                           onChange={(e) => setEditForm({...editForm, flag: e.target.value})}
                           placeholder="Flag Code (e.g. it, mx)"
-                          className="w-32 bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-3 py-1.5 text-[12px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
+                          className="w-32 bg-black/40 backdrop-blur-md border border-white/20 rounded-md px-5 py-2 text-base font-bold text-white focus:border-[#0077ff] focus:outline-none"
                         />
                       </div>
                     </div>
@@ -757,7 +757,7 @@ const Cookbook = () => {
                     <div className="flex flex-col gap-1 mb-2">
                       <h2 className="text-xl font-bold tracking-tight text-white leading-tight drop-shadow-lg">{selectedRecipe.title}</h2>
                       {selectedRecipe.variation && (
-                        <span className="flex items-center gap-1.5 text-[10px] font-bold tracking-wider uppercase text-[#00E5FF] drop-shadow-lg">
+                        <span className="flex items-center gap-3 text-[15px] font-bold tracking-wider uppercase text-[#00E5FF] drop-shadow-lg">
                           {selectedRecipe.flag && <img src={`https://flagcdn.com/w20/${selectedRecipe.flag}.png`} alt="flag" className="w-4 h-auto rounded-[2px] shadow-sm" />}
                           {selectedRecipe.variation}
                         </span>
@@ -765,31 +765,31 @@ const Cookbook = () => {
                     </div>
                   )}
 
-                  <div className="flex gap-4 text-[10px] text-gray-300 font-bold uppercase tracking-wider drop-shadow-md">
+                  <div className="flex gap-4 text-[15px] text-gray-300 font-bold uppercase tracking-wider drop-shadow-md">
                     {isEditing ? (
                       <input 
                         type="text" 
                         value={editForm.time}
                         onChange={(e) => setEditForm({...editForm, time: e.target.value})}
                         placeholder="Time (e.g. 20 min)"
-                        className="bg-black/40 border border-white/20 rounded-md px-2 py-1 text-white focus:outline-none w-24"
+                        className="bg-black/40 border border-white/20 rounded-md px-4 py-2 text-white focus:outline-none w-24"
                       />
                     ) : (
-                      <span className="flex items-center gap-1.5"><FiClock size={12} className="text-[#0077ff]"/> {selectedRecipe.time}</span>
+                      <span className="flex items-center gap-3"><FiClock size={12} className="text-[#0077ff]"/> {selectedRecipe.time}</span>
                     )}
                     
                     {isEditing ? (
                       <select 
                         value={editForm.difficulty}
                         onChange={(e) => setEditForm({...editForm, difficulty: e.target.value})}
-                        className="bg-black/40 border border-white/20 rounded-md px-2 py-1 text-white focus:outline-none w-24"
+                        className="bg-black/40 border border-white/20 rounded-md px-4 py-2 text-white focus:outline-none w-24"
                       >
                         <option value="Easy">Easy</option>
                         <option value="Medium">Medium</option>
                         <option value="Hard">Hard</option>
                       </select>
                     ) : (
-                      <span className="flex items-center gap-1.5"><FiUsers size={12} className="text-emerald-400"/> {selectedRecipe.difficulty}</span>
+                      <span className="flex items-center gap-3"><FiUsers size={12} className="text-emerald-400"/> {selectedRecipe.difficulty}</span>
                     )}
                   </div>
                 </div>
@@ -800,15 +800,15 @@ const Cookbook = () => {
                 
                 {/* Personalized Badges IN THE DRAWER */}
                 {!isEditing && (selectedRecipe.matchedFor.length > 0 || selectedRecipe.warnings.length > 0) && (
-                  <section className="flex flex-col gap-2 bg-white/5 p-4 rounded-xl border border-white/10">
-                    <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Household Impact</h4>
+                  <section className="flex flex-col gap-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                    <h4 className="text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-1">Household Impact</h4>
                     {selectedRecipe.matchedFor.length > 0 && (
-                      <span className="text-[11px] text-blue-300 font-bold flex items-center gap-2">
+                      <span className="text-base text-blue-300 font-bold flex items-center gap-2">
                         <FiCheckCircle size={14} className="text-blue-500"/> Perfect for: {selectedRecipe.matchedFor.join(', ')}
                       </span>
                     )}
                     {selectedRecipe.warnings.length > 0 && selectedRecipe.warnings.map((w, i) => (
-                      <span key={i} className="text-[11px] text-red-300 font-bold flex items-center gap-2">
+                      <span key={i} className="text-base text-red-300 font-bold flex items-center gap-2">
                         <FiAlertTriangle size={14} className="text-red-500"/> {w}
                       </span>
                     ))}
@@ -822,7 +822,7 @@ const Cookbook = () => {
                       <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                     </div>
                   )}
-                  <h4 className="text-[10px] font-bold text-[#00E5FF] uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <h4 className="text-[15px] font-bold text-[#00E5FF] uppercase tracking-widest mb-5 flex items-center gap-2">
                     ✨ Honesti AI Adjustments (10-Yr Log)
                   </h4>
                   {isEditing ? (
@@ -830,7 +830,7 @@ const Cookbook = () => {
                       value={editForm.aiModifications}
                       onChange={(e) => setEditForm({...editForm, aiModifications: e.target.value})}
                       placeholder="Detail the AI modifications made to this recipe..."
-                      className="w-full bg-black/20 border border-[#0077ff]/40 rounded-lg p-3 text-[12px] text-gray-200 focus:outline-none min-h-[100px] custom-scrollbar"
+                      className="w-full bg-black/20 border border-[#0077ff]/40 rounded-lg p-5 text-base text-gray-200 focus:outline-none min-h-[100px] custom-scrollbar"
                     />
                   ) : (
                     <p className="text-[12.5px] text-gray-200 leading-relaxed font-medium relative z-10">
@@ -843,7 +843,7 @@ const Cookbook = () => {
                 {isEditing && (
                   <section className="space-y-4">
                     <div>
-                      <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Perfect For (Household Members)</h4>
+                      <h4 className="text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-2">Perfect For (Household Members)</h4>
                       <TagInput 
                         tags={editForm.matchedFor}
                         setTags={(newTags) => setEditForm({ ...editForm, matchedFor: newTags })}
@@ -852,7 +852,7 @@ const Cookbook = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Warnings</h4>
+                      <h4 className="text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-2">Warnings</h4>
                       <TagInput 
                         tags={editForm.warnings}
                         setTags={(newTags) => setEditForm({ ...editForm, warnings: newTags })}
@@ -865,7 +865,7 @@ const Cookbook = () => {
 
                 {/* Ingredients */}
                 <section>
-                  <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2 flex justify-between">
+                  <h4 className="text-base font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2 flex justify-between">
                     Smart Grocery List
                   </h4>
                   {isEditing ? (
@@ -878,12 +878,12 @@ const Cookbook = () => {
                   ) : (
                     <ul className="space-y-3">
                       {(selectedRecipe.availableVariations?.[activeVariationIndex]?.ingredients || selectedRecipe.ingredients).map((ing, i) => (
-                        <li key={i} className="flex items-center justify-between text-[13px] text-gray-200">
+                        <li key={i} className="flex items-center justify-between text-[15px] text-gray-200">
                           <div className="flex items-center gap-3">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
                             {ing}
                           </div>
-                          <span className="text-[9px] text-gray-500 uppercase font-bold px-2 py-1 bg-white/5 rounded">In Pantry</span>
+                          <span className="text-base text-gray-500 uppercase font-bold px-4 py-2 bg-white/5 rounded">In Pantry</span>
                         </li>
                       ))}
                     </ul>
@@ -892,13 +892,13 @@ const Cookbook = () => {
 
                 {/* Instructions */}
                 <section>
-                  <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
+                  <h4 className="text-base font-bold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
                     Step-by-Step
                   </h4>
                   {isEditing ? (
                     <div className="space-y-3">
                       {editForm.instructions.map((step, i) => (
-                        <div key={i} className="flex gap-2 items-start">
+                        <div key={i} className="flex gap-4 items-start">
                           <textarea 
                             value={step}
                             onChange={(e) => {
@@ -906,16 +906,16 @@ const Cookbook = () => {
                               newInst[i] = e.target.value;
                               setEditForm({...editForm, instructions: newInst});
                             }}
-                            className="flex-1 bg-black/20 border border-white/10 rounded-lg p-2 text-[12px] text-gray-300 focus:outline-none min-h-[50px] resize-none"
+                            className="flex-1 bg-black/20 border border-white/10 rounded-lg p-4 text-base text-gray-300 focus:outline-none min-h-[50px] resize-none"
                           />
-                          <button onClick={() => setEditForm({...editForm, instructions: editForm.instructions.filter((_, idx) => idx !== i)})} className="p-2 text-red-400 hover:bg-white/5 rounded-lg">
+                          <button onClick={() => setEditForm({...editForm, instructions: editForm.instructions.filter((_, idx) => idx !== i)})} className="p-4 text-red-400 hover:bg-white/5 rounded-lg">
                             <FiX size={14} />
                           </button>
                         </div>
                       ))}
                       <button 
                         onClick={() => setEditForm({...editForm, instructions: [...editForm.instructions, '']})}
-                        className="text-[11px] font-bold text-[#0077ff] flex items-center gap-1 hover:underline"
+                        className="text-base font-bold text-[#0077ff] flex items-center gap-1 hover:underline"
                       >
                         <FiPlus /> Add Step
                       </button>
@@ -924,10 +924,10 @@ const Cookbook = () => {
                     <div className="space-y-5">
                       {(selectedRecipe.availableVariations?.[activeVariationIndex]?.instructions || selectedRecipe.instructions).map((step, i) => (
                         <div key={i} className="flex gap-4">
-                          <div className="w-6 h-6 shrink-0 rounded-full bg-[#0077ff]/20 text-[#0077ff] flex items-center justify-center text-[10px] font-black border border-[#0077ff]/30">
+                          <div className="w-6 h-6 shrink-0 rounded-full bg-[#0077ff]/20 text-[#0077ff] flex items-center justify-center text-[15px] font-black border border-[#0077ff]/30">
                             {i + 1}
                           </div>
-                          <p className="text-[13px] text-gray-300 leading-relaxed pt-0.5">{step}</p>
+                          <p className="text-[15px] text-gray-300 leading-relaxed pt-0.5">{step}</p>
                         </div>
                       ))}
                     </div>
@@ -941,14 +941,14 @@ const Cookbook = () => {
                 {isEditing ? (
                   <button 
                     onClick={handleSave}
-                    className="cursor-pointer w-full py-3.5 bg-[#0077ff] hover:bg-blue-600 text-[13px] font-bold text-white rounded-xl shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2"
+                    className="cursor-pointer w-full py-3.5 bg-[#0077ff] hover:bg-blue-600 text-[15px] font-bold text-white rounded-xl shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2"
                   >
                     <FiSave size={16} /> Save Recipe Data
                   </button>
                 ) : (
                   <button 
                     onClick={startCooking}
-                    className="cursor-pointer w-full py-3.5 bg-[#00E5FF] hover:bg-[#00c2d6] text-[13px] font-bold text-black rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.5)] transition-all active:scale-95 flex items-center justify-center gap-2"
+                    className="cursor-pointer w-full py-3.5 bg-[#00E5FF] hover:bg-[#00c2d6] text-[15px] font-bold text-black rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.5)] transition-all active:scale-95 flex items-center justify-center gap-2"
                   >
                     <FiPlay size={16} /> Start Smart Cooking Mode
                   </button>
@@ -984,13 +984,13 @@ const Cookbook = () => {
               <div className="flex items-center gap-4">
                 <button 
                   onClick={closeCooking}
-                  className="cursor-pointer p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors border border-white/10"
+                  className="cursor-pointer p-4 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors border border-white/10"
                 >
                   <FiX size={18} />
                 </button>
                 <div>
                   <h2 className="text-base md:text-lg font-bold tracking-tight text-white">{selectedRecipe.title}</h2>
-                  <div className="flex items-center gap-2 text-emerald-400 text-[10px] font-bold mt-0.5">
+                  <div className="flex items-center gap-4 text-emerald-400 text-[15px] font-bold mt-0.5">
                     <span className="relative flex h-1.5 w-1.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
@@ -1001,7 +1001,7 @@ const Cookbook = () => {
               </div>
               <button 
                 onClick={closeCooking}
-                className="cursor-pointer bg-red-500/10 text-red-400 hover:bg-red-500/20 px-4 py-1.5 rounded-lg font-bold tracking-widest text-[10px] md:text-xs transition-colors border border-red-500/30"
+                className="cursor-pointer bg-red-500/10 text-red-400 hover:bg-red-500/20 px-4 py-2 rounded-lg font-bold tracking-widest text-[15px] md:text-xs transition-colors border border-red-500/30"
               >
                 END COOKING
               </button>
@@ -1011,7 +1011,7 @@ const Cookbook = () => {
             <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 md:p-8 w-full overflow-y-auto custom-scrollbar">
               
               <div className="text-center w-full max-w-5xl mx-auto my-auto pb-4">
-                <div className="text-[11px] md:text-xs font-bold text-[#0077ff] tracking-widest uppercase mb-4">
+                <div className="text-base md:text-xs font-bold text-[#0077ff] tracking-widest uppercase mb-4">
                   Step {currentStepIndex + 1} of {selectedRecipe.instructions.length}
                 </div>
                 
@@ -1035,7 +1035,7 @@ const Cookbook = () => {
                     <span className="text-3xl md:text-4xl font-black text-[#00E5FF]">
                       {formatTime(timerSeconds)}
                     </span>
-                    <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                    <span className="text-base font-bold text-gray-400 uppercase tracking-widest mt-1">
                       {isTimerRunning ? 'Tap to Pause' : timerSeconds > 0 && timerSeconds < timerInitial ? 'Tap to Resume' : 'Tap to Start'}
                     </span>
                   </motion.div>
@@ -1055,7 +1055,7 @@ const Cookbook = () => {
               </button>
               
               {/* Responsive Progress Dots */}
-              <div className="hidden sm:flex gap-1.5 flex-1 justify-center max-w-sm mx-auto overflow-hidden">
+              <div className="hidden sm:flex gap-3 flex-1 justify-center max-w-sm mx-auto overflow-hidden">
                 {selectedRecipe.instructions.map((_, idx) => (
                   <div 
                     key={idx} 
@@ -1101,20 +1101,20 @@ const Cookbook = () => {
                 <FiX size={18} />
               </button>
 
-              <h2 className="text-xl font-bold text-white mb-2 tracking-tight mt-2 text-center">Select Cultural Variation</h2>
-              <p className="text-gray-400 text-[11px] text-center mb-6">Choose a tradition for {variationModalRecipe.title}</p>
+              <h2 className="text-xl font-bold text-white mb-4 tracking-tight mt-2 text-center">Select Cultural Variation</h2>
+              <p className="text-gray-400 text-base text-center mb-6">Choose a tradition for {variationModalRecipe.title}</p>
 
-              <div className="flex flex-col gap-3 w-full mb-2 max-h-[60vh] overflow-y-auto custom-scrollbar pr-2">
+              <div className="flex flex-col gap-5 w-full mb-4 max-h-[60vh] overflow-y-auto custom-scrollbar pr-2">
                 {variationModalRecipe.availableVariations.map((v, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSelectVariation(variationModalRecipe, idx)}
-                    className="flex items-center gap-3 w-full bg-white/5 hover:bg-[#0077ff]/20 border border-white/10 hover:border-[#0077ff]/50 rounded-xl p-4 transition-all group cursor-pointer text-left"
+                    className="flex items-center gap-5 w-full bg-white/5 hover:bg-[#0077ff]/20 border border-white/10 hover:border-[#0077ff]/50 rounded-xl p-4 transition-all group cursor-pointer text-left"
                   >
                     {v.flag && <img src={`https://flagcdn.com/w40/${v.flag}.png`} alt="flag" className="w-8 h-auto rounded shadow-md group-hover:scale-110 transition-transform" />}
                     <div className="flex flex-col">
-                      <span className="text-white font-bold text-[14px]">{v.variation} Style</span>
-                      <span className="text-gray-400 text-[10px] uppercase tracking-wider">{v.time} • {v.difficulty}</span>
+                      <span className="text-white font-bold text-base">{v.variation} Style</span>
+                      <span className="text-gray-400 text-[15px] uppercase tracking-wider">{v.time} • {v.difficulty}</span>
                     </div>
                     <FiChevronRight size={18} className="text-[#0077ff] ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </button>
@@ -1151,18 +1151,18 @@ const Cookbook = () => {
               </button>
 
               <h2 className="text-xl font-bold text-white mb-1 tracking-tight mt-2">Dinner is Served! 🎉</h2>
-              <p className="text-gray-400 text-[11px] text-center mb-6">How did everyone like the {selectedRecipe?.title}?</p>
+              <p className="text-gray-400 text-base text-center mb-6">How did everyone like the {selectedRecipe?.title}?</p>
 
               {/* Avatar Grid */}
               <div className="w-full mb-5">
-                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">Household Feedback</label>
+                <label className="block text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-5 text-center">Household Feedback</label>
                 <div className="flex flex-wrap justify-center gap-4 mb-2">
                   {selectedRecipe?.matchedFor.map((persona) => (
                     <div key={persona} className="flex flex-col items-center gap-2">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0077ff] to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-md border-2 border-[#0b0f19]">
                         {persona.substring(0, 2).toUpperCase()}
                       </div>
-                      <p className="text-[10px] text-gray-300 font-bold">{persona}</p>
+                      <p className="text-[15px] text-gray-300 font-bold">{persona}</p>
                       <div className="flex bg-white/5 border border-white/10 rounded-full p-1 gap-1">
                         {['😍', '😐', '🤢'].map((emoji) => (
                           <button
@@ -1191,8 +1191,8 @@ const Cookbook = () => {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="mt-3 p-3 bg-white/5 border border-white/10 rounded-xl">
-                        <label className="block text-[10px] font-bold text-[#0077ff] uppercase tracking-widest mb-2 flex justify-between">
+                      <div className="mt-3 p-5 bg-white/5 border border-white/10 rounded-xl">
+                        <label className="block text-[15px] font-bold text-[#0077ff] uppercase tracking-widest mb-4 flex justify-between">
                           <span>Why didn't {activeNotePersona} love it?</span>
                           <button onClick={() => setActiveNotePersona(null)} className="text-gray-400 hover:text-white"><FiX size={12}/></button>
                         </label>
@@ -1201,7 +1201,7 @@ const Cookbook = () => {
                           value={personaFeedbacks[activeNotePersona]?.note || ''}
                           onChange={(e) => setPersonaFeedbacks(prev => ({ ...prev, [activeNotePersona]: { ...prev[activeNotePersona], note: e.target.value } }))}
                           placeholder={`e.g., Too spicy, needs less salt...`}
-                          className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[12px] text-white focus:outline-none focus:border-[#0077ff]"
+                          className="w-full bg-black/40 border border-white/10 rounded-lg px-5 py-2 text-base text-white focus:outline-none focus:border-[#0077ff]"
                         />
                       </div>
                     </motion.div>
@@ -1210,20 +1210,20 @@ const Cookbook = () => {
               </div>
 
               {/* Investor Note */}
-              <div className="w-full bg-[#0077ff]/10 border border-[#0077ff]/30 rounded-xl p-3 mb-5 relative overflow-hidden shrink-0">
+              <div className="w-full bg-[#0077ff]/10 border border-[#0077ff]/30 rounded-xl p-5 mb-5 relative overflow-hidden shrink-0">
                 <div className="absolute top-0 left-0 w-1 h-full bg-[#0077ff]"></div>
-                <p className="text-[10px] text-blue-100 font-medium leading-relaxed">
-                  <span className="font-bold text-[#00E5FF] uppercase tracking-widest text-[9px] block mb-1">MVP Architecture</span> 
+                <p className="text-[15px] text-blue-100 font-medium leading-relaxed">
+                  <span className="font-bold text-[#00E5FF] uppercase tracking-widest text-base block mb-1">MVP Architecture</span> 
                   Fallback feedback links are dynamically dispatched via email to family members. 
                   <br/><br/>
-                  <span className="font-bold text-[#00E5FF] uppercase tracking-widest text-[9px] block mb-1">Future Roadmap</span> 
+                  <span className="font-bold text-[#00E5FF] uppercase tracking-widest text-base block mb-1">Future Roadmap</span> 
                   A dedicated Honesti Mobile App will receive live push notifications for real-time rating updates.
                 </p>
               </div>
 
               <button
                 onClick={submitFeedbackAndClose}
-                className="w-full py-3 bg-[#00E5FF] hover:bg-[#00c2d6] text-[12px] font-bold text-black rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                className="w-full py-3 bg-[#00E5FF] hover:bg-[#00c2d6] text-base font-bold text-black rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-transform active:scale-95 flex items-center justify-center gap-4 cursor-pointer shrink-0"
               >
                 Save Feedback
               </button>

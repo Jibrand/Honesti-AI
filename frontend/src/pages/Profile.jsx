@@ -88,14 +88,14 @@ const Profile = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/80 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto custom-scrollbar p-2.5 md:p-8">
+      <div className="relative z-10 flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8">
         
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-3 md:mb-8 border-b border-white/10 pb-2.5 md:pb-5 gap-2 md:gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-4 md:gap-4">
             <div>
-              <h1 className="text-[18px] md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-1.5 drop-shadow-md">My Profile</h1>
-              <p className="text-gray-300 text-[9px] md:text-[12px] font-medium drop-shadow-sm">Manage Your Personal Information</p>
+              <h1 className="text-xl md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-5 drop-shadow-md">My Profile</h1>
+              <p className="text-gray-300 text-base md:text-base font-medium drop-shadow-sm">Manage Your Personal Information</p>
             </div>
             
             <button 
@@ -106,9 +106,9 @@ const Profile = () => {
                   setIsEditing(true);
                 }
               }}
-              className={`cursor-pointer px-3 md:px-5 py-1.5 md:py-2.5 rounded-md md:rounded-lg text-[10px] md:text-[12px] font-bold transition-colors flex items-center gap-1.5 md:gap-2 ${isEditing ? 'bg-[#0077ff] text-white' : 'bg-white/10 hover:bg-white/20 text-white'}`}
+              className={`cursor-pointer px-5 md:px-5 py-2 md:py-2.5 rounded-md md:rounded-lg text-[15px] md:text-base font-bold transition-colors flex items-center gap-3 md:gap-4 ${isEditing ? 'bg-[#0077ff] text-white' : 'bg-white/10 hover:bg-white/20 text-white'}`}
             >
-              {isEditing ? <><FiCheck size={12} className="md:w-3.5 md:h-3.5"/> Save Changes</> : <><FiEdit2 size={12} className="md:w-3.5 md:h-3.5"/> Edit Profile</>}
+              {isEditing ? <><FiCheck size={12} className="md:w-5 md:h-5"/> Save Changes</> : <><FiEdit2 size={12} className="md:w-5 md:h-5"/> Edit Profile</>}
             </button>
           </div>
 
@@ -119,68 +119,68 @@ const Profile = () => {
                 key={stat.id}
                 className="bg-[#0f1523]/80 backdrop-blur-lg border border-white/10 rounded-lg md:rounded-xl p-2.5 md:p-5 flex items-center gap-2 md:gap-4"
               >
-                <div className={`w-8 h-8 md:w-10 md:h-10 rounded-md md:rounded-lg flex items-center justify-center ${stat.bg} ${stat.color}`}>
+                <div className={`w-7 h-7 md:w-10 md:h-10 shrink-0 rounded-md md:rounded-lg flex items-center justify-center ${stat.bg} ${stat.color}`}>
                   {stat.icon}
                 </div>
-                <div>
-                  <p className="text-[8px] md:text-[11px] font-bold text-gray-400 tracking-wider mb-0.5">{stat.label}</p>
-                  <p className="text-xs md:text-xl font-bold text-white">{stat.value}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[9px] md:text-sm font-bold text-gray-400 tracking-wide mb-0.5 whitespace-nowrap overflow-hidden text-ellipsis">{stat.label}</p>
+                  <p className="text-sm md:text-xl font-bold text-white">{stat.value}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Main Content Layout */}
-          <div className="grid grid-cols-1 gap-3 md:gap-6">
+          <div className="grid grid-cols-1 gap-5 md:gap-6">
             
             {/* Details Form */}
             <div className="md:col-span-1">
-              <div className="bg-[#0f1523]/80 backdrop-blur-lg border border-white/10 rounded-xl p-3 md:p-6 h-full">
-                <h3 className="text-[10px] md:text-sm font-bold tracking-wider text-gray-400 mb-3 md:mb-6 border-b border-white/10 pb-2 md:pb-3 flex items-center gap-2">
-                  <FiUser className="text-[#0077ff] w-3 h-3 md:w-4 md:h-4" /> Personal Information
+              <div className="bg-[#0f1523]/80 backdrop-blur-lg border border-white/10 rounded-xl p-5 md:p-6 h-full">
+                <h3 className="text-[15px] md:text-sm font-bold tracking-wider text-gray-400 mb-5 md:mb-6 border-b border-white/10 pb-2 md:pb-3 flex items-center gap-2">
+                  <FiUser className="text-[#0077ff] w-4 h-4 md:w-4 md:h-4" /> Personal Information
                 </h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-5">
                   <div>
-                    <label className="block text-[9px] md:text-[11px] font-bold text-gray-400 tracking-wider mb-1.5 md:mb-2">First Name</label>
+                    <label className="block text-base md:text-base font-bold text-gray-400 tracking-wider mb-5 md:mb-2">First Name</label>
                     <input 
                       type="text" 
                       value={profileData.firstName || ''}
                       onChange={(e) => setProfileData({...profileData, firstName: e.target.value})}
                       disabled={!isEditing}
-                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-2.5 md:px-4 py-1.5 md:py-2.5 text-[10px] md:text-[13px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
+                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-4 md:px-4 py-2 md:py-2.5 text-[15px] md:text-[15px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[9px] md:text-[11px] font-bold text-gray-400 tracking-wider mb-1.5 md:mb-2">Last Name</label>
+                    <label className="block text-base md:text-base font-bold text-gray-400 tracking-wider mb-5 md:mb-2">Last Name</label>
                     <input 
                       type="text" 
                       value={profileData.lastName || ''}
                       onChange={(e) => setProfileData({...profileData, lastName: e.target.value})}
                       disabled={!isEditing}
-                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-2.5 md:px-4 py-1.5 md:py-2.5 text-[10px] md:text-[13px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
+                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-4 md:px-4 py-2 md:py-2.5 text-[15px] md:text-[15px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[9px] md:text-[11px] font-bold text-gray-400 tracking-wider mb-1.5 md:mb-2">Email Address</label>
+                    <label className="block text-base md:text-base font-bold text-gray-400 tracking-wider mb-5 md:mb-2">Email Address</label>
                     <input 
                       type="email" 
                       value={profileData.email}
                       onChange={(e) => setProfileData({...profileData, email: e.target.value})}
                       disabled={!isEditing}
-                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-2.5 md:px-4 py-1.5 md:py-2.5 text-[10px] md:text-[13px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
+                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-4 md:px-4 py-2 md:py-2.5 text-[15px] md:text-[15px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
                     />
                   </div>
                   <div>
-                    <label className="block text-[9px] md:text-[11px] font-bold text-gray-400 tracking-wider mb-1.5 md:mb-2">Phone Number</label>
+                    <label className="block text-base md:text-base font-bold text-gray-400 tracking-wider mb-5 md:mb-2">Phone Number</label>
                     <input 
                       type="tel" 
                       value={profileData.phone}
                       onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
                       disabled={!isEditing}
-                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-2.5 md:px-4 py-1.5 md:py-2.5 text-[10px] md:text-[13px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
+                      className={`w-full bg-black/20 border ${isEditing ? 'border-[#0077ff]' : 'border-white/10'} rounded-md md:rounded-lg px-4 md:px-4 py-2 md:py-2.5 text-[15px] md:text-[15px] font-bold text-white focus:outline-none transition-colors disabled:opacity-70 disabled:text-gray-300`}
                     />
                   </div>
                 </div>

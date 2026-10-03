@@ -150,49 +150,49 @@ const Pantry = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/70 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-2.5 md:p-8">
+      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-4 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-3 md:mb-8 border-b border-white/10 pb-2.5 md:pb-5 gap-2 md:gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-4 md:gap-5">
           <div className="flex-1">
-            <h1 className="text-[18px] md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-1.5 drop-shadow-md">Smart Pantry</h1>
-            <p className="text-gray-300 text-[9px] md:text-[12px] font-medium drop-shadow-sm">Real-time inventory synced with your household diet and recipes.</p>
+            <h1 className="text-xl md:text-[28px] font-bold tracking-tight mb-0.5 md:mb-5 drop-shadow-md">Smart Pantry</h1>
+            <p className="text-gray-300 text-base md:text-base font-medium drop-shadow-sm">Real-time inventory synced with your household diet and recipes.</p>
           </div>
           
-          <div className="w-full md:w-auto flex gap-2 md:gap-3 shrink-0">
+          <div className="w-full md:w-auto flex gap-4 md:gap-5 shrink-0">
             <div className="relative w-full md:w-64">
-              <FiSearch className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} className="md:w-3.5 md:h-3.5" />
+              <FiSearch className="absolute left-2.5 md:left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} className="md:w-5 md:h-5" />
               <input 
                 type="text" 
                 placeholder="Search ingredients..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#0f1523]/80 backdrop-blur-md border border-white/10 rounded-md md:rounded-lg pl-7 md:pl-9 pr-3 md:pr-4 py-1.5 md:py-2.5 text-[10px] md:text-[12px] text-white focus:border-[#0077ff] focus:outline-none transition-colors shadow-inner"
+                className="w-full bg-[#0f1523]/80 backdrop-blur-md border border-white/10 rounded-md md:rounded-lg pl-7 md:pl-9 pr-3 md:pr-4 py-2 md:py-2.5 text-[15px] md:text-base text-white focus:border-[#0077ff] focus:outline-none transition-colors shadow-inner"
               />
             </div>
             
             <button 
               onClick={handleScanClick}
-              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white px-2.5 md:px-4 py-1 md:py-2 rounded-md md:rounded-lg text-[10px] md:text-[12px] font-bold transition-all flex items-center gap-1.5 active:scale-95 border border-white/10"
+              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white px-4 md:px-4 py-2 md:py-2 rounded-md md:rounded-lg text-[15px] md:text-base font-bold transition-all flex items-center gap-3 active:scale-95 border border-white/10"
             >
-              <FiCamera size={12} className="md:w-3.5 md:h-3.5" /> <span className="hidden sm:inline">Scan Receipt</span><span className="sm:hidden">Scan</span>
+              <FiCamera size={12} className="md:w-5 md:h-5" /> <span className="hidden sm:inline">Scan Receipt</span><span className="sm:hidden">Scan</span>
             </button>
             <button 
               onClick={openAddDrawer}
-              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-2.5 md:px-4 py-1 md:py-2 rounded-md md:rounded-lg text-[10px] md:text-[12px] font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-1.5 active:scale-95 border border-blue-400/30"
+              className="cursor-pointer bg-[#0077ff] hover:bg-blue-600 text-white px-4 md:px-4 py-2 md:py-2 rounded-md md:rounded-lg text-[15px] md:text-base font-bold shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center gap-3 active:scale-95 border border-blue-400/30"
             >
-              <FiPlus size={12} className="md:w-3.5 md:h-3.5" /> Add Item
+              <FiPlus size={12} className="md:w-5 md:h-5" /> Add Item
             </button>
           </div>
         </div>
 
         {/* Filters/Pills */}
-        <div className="flex gap-1.5 md:gap-2 overflow-x-auto custom-scrollbar pb-1.5 md:pb-2 mb-4 md:mb-6">
+        <div className="flex gap-3 md:gap-4 overflow-x-auto custom-scrollbar pb-3 md:pb-2 mb-4 md:mb-6">
           {filters.map((filter, i) => (
             <button 
               key={i} 
               onClick={() => setActiveFilter(filter)}
-              className={`cursor-pointer whitespace-nowrap px-3 md:px-4 py-1 md:py-1.5 rounded-md md:rounded-lg text-[9px] md:text-[11px] font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
+              className={`cursor-pointer whitespace-nowrap px-5 md:px-4 py-2 md:py-2 rounded-md md:rounded-lg text-base md:text-base font-bold transition-all border ${activeFilter === filter ? 'bg-[#0077ff] border-[#0077ff] text-white shadow-[0_0_15px_rgba(0,119,255,0.3)]' : 'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10'}`}
             >
               {filter}
             </button>
@@ -201,7 +201,7 @@ const Pantry = () => {
 
         {/* Pantry Grid (Text Only, Clean Layout) */}
         <AnimatePresence>
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 md:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
             {filteredItems.map((item) => (
               <motion.div 
                 key={item.id}
@@ -210,16 +210,16 @@ const Pantry = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 whileHover={{ y: -4, borderColor: 'rgba(0, 119, 255, 0.3)' }}
-                className="bg-[#0f1523]/60 backdrop-blur-2xl border border-white/10 rounded-lg md:rounded-xl p-2.5 md:p-4 shadow-xl group flex flex-col transition-all relative cursor-pointer"
+                className="bg-[#0f1523]/60 backdrop-blur-2xl border border-white/10 rounded-lg md:rounded-xl p-3 md:p-4 shadow-xl group flex flex-col transition-all relative cursor-pointer"
                 onClick={() => openEditDrawer(item)}
               >
                 
                 {/* Header Row: Title & 3 Dots Menu */}
-                <div className="flex justify-between items-start mb-4">
-                  <div className="pr-4">
-                    <h3 className="text-sm font-bold tracking-tight text-white mb-1.5 leading-tight group-hover:text-[#0077ff] transition-colors">{item.name}</h3>
+                <div className="flex justify-between items-start mb-2 md:mb-4">
+                  <div className="pr-2 md:pr-4">
+                    <h3 className="text-xs md:text-sm font-bold tracking-tight text-white mb-2 md:mb-5 leading-tight group-hover:text-[#0077ff] transition-colors">{item.name}</h3>
                     {/* Render Category as a Tag/Pill */}
-                    <span className="inline-block px-2 py-0.5 bg-[#0077ff]/10 border border-[#0077ff]/30 rounded text-[9px] font-bold text-[#0077ff] uppercase tracking-widest">
+                    <span className="inline-block px-2 md:px-4 py-0.5 bg-[#0077ff]/10 border border-[#0077ff]/30 rounded text-[9px] md:text-xs font-bold text-[#0077ff] uppercase tracking-widest">
                       {item.category}
                     </span>
                   </div>
@@ -242,13 +242,13 @@ const Pantry = () => {
                         >
                           <button 
                             onClick={(e) => { e.stopPropagation(); openEditDrawer(item); }}
-                            className="cursor-pointer w-full text-left px-3 py-2 text-[11px] font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
+                            className="cursor-pointer w-full text-left px-5 py-2 text-base font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors flex items-center gap-2"
                           >
                             <FiEdit2 size={12}/> Edit Item
                           </button>
                           <button 
                             onClick={(e) => { e.stopPropagation(); handleDelete(item.id); }}
-                            className="cursor-pointer w-full text-left px-3 py-2 text-[11px] font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
+                            className="cursor-pointer w-full text-left px-5 py-2 text-base font-bold text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors flex items-center gap-2"
                           >
                             <FiTrash2 size={12}/> Remove
                           </button>
@@ -261,11 +261,11 @@ const Pantry = () => {
                 {/* Footer Row: Quantity & Status */}
                 <div className="mt-auto flex justify-between items-end">
                   <div>
-                    <p className="text-[10px] text-gray-500 mb-1 uppercase tracking-widest font-bold">Quantity</p>
-                    <p className="text-[13px] font-bold text-white">{item.quantityVal} {item.quantityUnit}</p>
+                    <p className="text-[15px] text-gray-500 mb-1 uppercase tracking-widest font-bold">Quantity</p>
+                    <p className="text-[15px] font-bold text-white">{item.quantityVal} {item.quantityUnit}</p>
                   </div>
                   
-                  <div className={`px-2 py-1 border rounded-md text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 ${getStatusColor(item.status)}`}>
+                  <div className={`px-4 py-2 border rounded-md text-base font-bold uppercase tracking-wider flex items-center gap-1 ${getStatusColor(item.status)}`}>
                     {item.status === 'In Stock' && <FiCheckCircle size={10} />}
                     {(item.status === 'Low Stock' || item.status === 'Expiring Soon') && <FiAlertCircle size={10} />}
                     {item.status === 'Out of Stock' && <FiAlertCircle size={10} />}
@@ -305,7 +305,7 @@ const Pantry = () => {
             >
               <div className="p-5 border-b border-white/10 flex justify-between items-center bg-[#0f1523]/80">
                 <h2 className="text-lg font-bold text-white">{isEditing ? 'Edit Ingredient' : 'Add to Pantry'}</h2>
-                <button onClick={closeDrawer} className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors cursor-pointer">
+                <button onClick={closeDrawer} className="p-4 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors cursor-pointer">
                   <FiX size={16} />
                 </button>
               </div>
@@ -313,22 +313,22 @@ const Pantry = () => {
               <div className="p-6 space-y-5 flex-1 overflow-y-auto custom-scrollbar">
                 
                 <div>
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Item Name</label>
+                  <label className="block text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-2">Item Name</label>
                   <input 
                     type="text" 
                     value={editForm.name}
                     onChange={(e) => setEditForm({...editForm, name: e.target.value})}
                     placeholder="e.g. Avocado"
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-[13px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
+                    className="w-full bg-black/20 border border-white/10 rounded-lg px-5 py-2 text-[15px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Category</label>
+                  <label className="block text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-2">Category</label>
                   <select 
                     value={editForm.category}
                     onChange={(e) => setEditForm({...editForm, category: e.target.value})}
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-[12px] font-bold text-white focus:outline-none cursor-pointer focus:border-[#0077ff]"
+                    className="w-full bg-black/20 border border-white/10 rounded-lg px-5 py-2 text-base font-bold text-white focus:outline-none cursor-pointer focus:border-[#0077ff]"
                   >
                     {filters.filter(f => f !== 'All Items' && f !== 'Low Stock' && f !== 'Out of Stock' && f !== 'Expiring Soon').map(cat => (
                       <option key={cat} value={cat} className="bg-[#0f1523] text-white">{cat}</option>
@@ -337,21 +337,21 @@ const Pantry = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Quantity</label>
+                  <label className="block text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-2">Quantity</label>
                   <div className="flex gap-2">
                     <input 
                       type="number" 
                       value={editForm.quantityVal}
                       onChange={(e) => setEditForm({...editForm, quantityVal: e.target.value})}
                       placeholder="e.g. 2"
-                      className="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-[12px] font-bold text-white focus:border-[#0077ff] focus:outline-none"
+                      className="w-1/2 bg-black/20 border border-white/10 rounded-lg px-5 py-2 text-base font-bold text-white focus:border-[#0077ff] focus:outline-none"
                       min="0"
                       step="any"
                     />
                     <select 
                       value={editForm.quantityUnit}
                       onChange={(e) => setEditForm({...editForm, quantityUnit: e.target.value})}
-                      className="w-1/2 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-[12px] font-bold text-white focus:outline-none cursor-pointer focus:border-[#0077ff]"
+                      className="w-1/2 bg-black/20 border border-white/10 rounded-lg px-5 py-2 text-base font-bold text-white focus:outline-none cursor-pointer focus:border-[#0077ff]"
                     >
                       {units.map(u => (
                         <option key={u} value={u} className="bg-[#0f1523] text-white">{u}</option>
@@ -361,11 +361,11 @@ const Pantry = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Inventory Status</label>
+                  <label className="block text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-2">Inventory Status</label>
                   <select 
                     value={editForm.status}
                     onChange={(e) => setEditForm({...editForm, status: e.target.value})}
-                    className="w-full bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-[12px] font-bold text-white focus:outline-none cursor-pointer focus:border-[#0077ff]"
+                    className="w-full bg-black/20 border border-white/10 rounded-lg px-5 py-2 text-base font-bold text-white focus:outline-none cursor-pointer focus:border-[#0077ff]"
                   >
                     <option value="In Stock" className="bg-[#0f1523] text-white">In Stock</option>
                     <option value="Low Stock" className="bg-[#0f1523] text-white">Low Stock</option>
@@ -378,7 +378,7 @@ const Pantry = () => {
               <div className="p-5 border-t border-white/10 bg-black/20">
                 <button 
                   onClick={handleSave}
-                  className="cursor-pointer w-full py-3 bg-[#0077ff] hover:bg-blue-600 text-[13px] font-bold text-white rounded-xl shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center justify-center gap-2 active:scale-95"
+                  className="cursor-pointer w-full py-3 bg-[#0077ff] hover:bg-blue-600 text-[15px] font-bold text-white rounded-xl shadow-[0_0_15px_rgba(0,119,255,0.3)] transition-all flex items-center justify-center gap-4 active:scale-95"
                 >
                   <FiSave size={16} /> Save to Pantry
                 </button>
@@ -425,7 +425,7 @@ const Pantry = () => {
                    'Receipt Processed!'}
                 </h2>
                 
-                <p className="text-[12px] font-medium text-gray-400 max-w-xs leading-relaxed">
+                <p className="text-base font-medium text-gray-400 max-w-xs leading-relaxed">
                   {scanStep === 0 ? 'Hold your grocery receipt steady in frame.' : 
                    scanStep === 1 ? 'Cross-referencing items with known dietary preferences...' : 
                    'Items successfully mapped to your pantry inventory.'}

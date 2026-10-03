@@ -10,12 +10,14 @@ import Profile from './pages/Profile';
 import Feedback from './pages/Feedback';
 import Chat from './pages/Chat';
 import { Toaster } from 'react-hot-toast';
+import ScrollToTop from './components/ScrollToTop';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Toaster 
         position="top-center" 
         toastOptions={{

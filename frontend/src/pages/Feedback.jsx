@@ -143,13 +143,13 @@ const Feedback = () => {
         <div className="absolute inset-0 bg-[#0b0f19]/80 backdrop-blur-md pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-3 md:p-8">
+      <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar p-5 md:p-8">
         
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-3 md:gap-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5 md:mb-8 border-b border-white/10 pb-4 md:pb-5 gap-5 md:gap-5">
           <div className="flex-1">
-            <h1 className="text-[20px] md:text-[28px] font-bold tracking-tight mb-1 md:mb-1.5 drop-shadow-md">Household Feedback</h1>
-            <p className="text-gray-300 text-[10px] md:text-[12px] font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
+            <h1 className="text-2xl md:text-[28px] font-bold tracking-tight mb-1 md:mb-5 drop-shadow-md">Household Feedback</h1>
+            <p className="text-gray-300 text-[15px] md:text-base font-medium drop-shadow-sm">Tracking feedback collection for AI recipe optimization.</p>
           </div>
         </div>
 
@@ -158,7 +158,7 @@ const Feedback = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-white/10 text-[9px] uppercase tracking-widest text-gray-400 bg-white/5">
+                <tr className="border-b border-white/10 text-base uppercase tracking-widest text-gray-400 bg-white/5">
                   <th className="px-4 py-3 font-bold">Meal</th>
                   <th className="px-4 py-3 font-bold">Date</th>
                   <th className="px-4 py-3 font-bold">Status</th>
@@ -182,26 +182,26 @@ const Feedback = () => {
                         className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer group"
                       >
                         <td className="px-4 py-3">
-                          <p className="text-[12px] font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
+                          <p className="text-base font-bold text-white group-hover:text-[#0077ff] transition-colors">{item.recipeName}</p>
                         </td>
                         <td className="px-4 py-3">
-                          <div className="flex items-center gap-1.5 text-[10px] text-gray-400 font-medium">
+                          <div className="flex items-center gap-3 text-[15px] text-gray-400 font-medium">
                             <FiClock size={10} /> {item.date}
                           </div>
                         </td>
                         <td className="px-4 py-3">
                           {isComplete ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">
+                            <span className="inline-flex items-center gap-1 px-4 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[15px] font-bold">
                               <FiCheckCircle size={10} /> Done
                             </span>
                           ) : (
                             <div className="flex items-center gap-2">
-                              <span className="text-[10px] text-orange-400 font-bold">Waiting on:</span>
+                              <span className="text-[15px] text-orange-400 font-bold">Waiting on:</span>
                               <div className="flex -space-x-1.5">
                                 {pendingPersonas.map((p, i) => (
                                   <div 
                                     key={i} 
-                                    className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-[8px] border border-[#0f1523] shadow-sm" 
+                                    className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold text-[15px] border border-[#0f1523] shadow-sm" 
                                     title={p.name}
                                   >
                                     {p.name.substring(0, 1).toUpperCase()}
@@ -245,7 +245,7 @@ const Feedback = () => {
               <div className="p-5 border-b border-white/10 flex justify-between items-start bg-white/5">
                 <div>
                   <h2 className="text-[15px] font-bold text-white mb-0.5 leading-tight">{selectedFeedback.recipeName}</h2>
-                  <p className="text-[10px] text-gray-400 flex items-center gap-1.5"><FiClock size={10}/> {selectedFeedback.date}</p>
+                  <p className="text-[15px] text-gray-400 flex items-center gap-3"><FiClock size={10}/> {selectedFeedback.date}</p>
                 </div>
                 <button 
                   onClick={() => setSelectedFeedback(null)}
@@ -258,38 +258,38 @@ const Feedback = () => {
               <div className="p-5 flex-1 overflow-y-auto custom-scrollbar space-y-5">
                 
                 {/* Status Callout */}
-                <div className="bg-[#0077ff]/10 border border-[#0077ff]/30 rounded-lg p-3 flex gap-2">
+                <div className="bg-[#0077ff]/10 border border-[#0077ff]/30 rounded-lg p-5 flex gap-2">
                   <FiMessageSquare className="text-[#00E5FF] shrink-0 mt-0.5" size={14} />
-                  <p className="text-[10px] text-blue-100 font-medium leading-relaxed">
+                  <p className="text-[15px] text-blue-100 font-medium leading-relaxed">
                     Feedback is automatically collected via Smart Cooking Mode completion, or via automated follow-ups sent to personal devices. Cannot be manually edited to preserve AI integrity.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-3">Individual Persona Logs</h3>
+                  <h3 className="text-base font-bold text-gray-400 uppercase tracking-widest mb-3">Individual Persona Logs</h3>
                   <div className="space-y-2">
                     {selectedFeedback.personas.map((persona, idx) => (
-                      <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-3 flex flex-col gap-2">
+                      <div key={idx} className="bg-white/5 border border-white/10 rounded-lg p-5 flex flex-col gap-2">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-[9px] shadow-sm border border-[#0b0f19]">
+                          <div className="flex items-center gap-4">
+                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-base shadow-sm border border-[#0b0f19]">
                               {persona.name.substring(0, 2).toUpperCase()}
                             </div>
-                            <span className="text-[11px] font-bold text-white">{persona.name}</span>
+                            <span className="text-base font-bold text-white">{persona.name}</span>
                           </div>
                           
                           {persona.status === 'Submitted' ? (
                             <span className="text-lg bg-white/10 w-7 h-7 flex items-center justify-center rounded-full shadow-inner">{persona.rating}</span>
                           ) : (
-                            <span className="text-[8px] font-bold uppercase tracking-widest text-orange-400 bg-orange-500/10 px-1.5 py-0.5 rounded border border-orange-500/20">
+                            <span className="text-[15px] font-bold uppercase tracking-widest text-orange-400 bg-orange-500/10 px-5 py-0.5 rounded border border-orange-500/20">
                               Pending Follow-up
                             </span>
                           )}
                         </div>
 
                         {persona.note && (
-                          <div className="bg-black/30 p-2 rounded-md border border-white/5">
-                            <p className="text-[10px] text-gray-300 italic">"{persona.note}"</p>
+                          <div className="bg-black/30 p-4 rounded-md border border-white/5">
+                            <p className="text-[15px] text-gray-300 italic">"{persona.note}"</p>
                           </div>
                         )}
                       </div>
