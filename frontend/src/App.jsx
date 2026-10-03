@@ -10,16 +10,12 @@ import Profile from './pages/Profile';
 import Feedback from './pages/Feedback';
 import Chat from './pages/Chat';
 import { Toaster } from 'react-hot-toast';
-import ScrollToTop from './components/ScrollToTop';
-
-import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
       <Toaster 
-        position="top-center" 
+        position="top-right" 
         toastOptions={{
           style: {
             background: '#0f1523',
@@ -36,19 +32,17 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/onboarding" replace />} />
         
-        <Route element={<ProtectedRoute />}>
-          <Route element={<Layout />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/pantry" element={<Pantry />} />
-            <Route path="/cookbook" element={<Cookbook />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/garden" element={<div className="p-8">HonestGarden (WIP)</div>} />
-            <Route path="/chefs" element={<div className="p-8">Little Chefs (WIP)</div>} />
-            <Route path="/household" element={<Household />} />
-            <Route path="/settings" element={<div className="p-8">Settings (WIP)</div>} />
-          </Route>
+        <Route element={<Layout />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/pantry" element={<Pantry />} />
+          <Route path="/cookbook" element={<Cookbook />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/garden" element={<div className="p-8">HonestGarden (WIP)</div>} />
+          <Route path="/chefs" element={<div className="p-8">Little Chefs (WIP)</div>} />
+          <Route path="/household" element={<Household />} />
+          <Route path="/settings" element={<div className="p-8">Settings (WIP)</div>} />
         </Route>
       </Routes>
     </BrowserRouter>

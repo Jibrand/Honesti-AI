@@ -67,35 +67,10 @@ const Home = () => {
   const navigate = useNavigate();
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [greeting, setGreeting] = useState('');
-  const cachedProfile = JSON.parse(localStorage.getItem('userProfile') || '{"firstName": "User"}');
-  const [userProfile, setUserProfile] = useState(cachedProfile);
   
   // Live Notifications State
   const [activeNotifications, setActiveNotifications] = useState(initialNotifications);
   const [pendingNotifications, setPendingNotifications] = useState(upcomingNotifications);
-
-  // Fetch Profile
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-      try {
-        const res = await fetch(`http://localhost:3001/api/auth/profile`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          setUserProfile(data);
-          localStorage.setItem('userProfile', JSON.stringify(data));
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchProfile();
-    window.addEventListener('profileUpdated', fetchProfile);
-    return () => window.removeEventListener('profileUpdated', fetchProfile);
-  }, []);
 
   // Unlock audio on first user interaction
   useEffect(() => {
@@ -132,7 +107,8 @@ const Home = () => {
     const timer = setTimeout(() => {
       const newNote = pendingNotifications[0];
       
-      // Removed playNotificationSound() call to stop the annoying sound
+      // Play unlocked sound
+      playNotificationSound();
 
       // Add to list and remove from pending queue
       setActiveNotifications(prev => [newNote, ...prev]);
@@ -173,13 +149,13 @@ const Home = () => {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
               transition={{ duration: 0.8 }}
-              className="bg-[#0b0f19]/80 backdrop-blur-md border border-white/10 rounded-xl p-5 flex items-start gap-4 shadow-2xl pointer-events-auto"
+              className="bg-[#0b0f19]/80 backdrop-blur-md border border-white/10 rounded-xl p-3 flex items-start gap-2 shadow-2xl pointer-events-auto"
             >
               <span className="text-blue-400 text-sm mt-0.5 drop-shadow-md">🌿</span>
-              <p className="text-base text-gray-200 italic leading-snug drop-shadow-md font-medium">
+              <p className="text-[11px] text-gray-200 italic leading-snug drop-shadow-md font-medium">
                 {quotes[quoteIndex].split('—')[0]}
                 <br />
-                <span className="text-blue-400 font-semibold not-italic text-[15px] flex items-center gap-3 mt-1">
+                <span className="text-blue-400 font-semibold not-italic text-[10px] flex items-center gap-1.5 mt-1">
                   <img src="/logo/circle_avatar_logo.png" className="w-5.5 h-5.5 rounded-full shadow-sm" alt="" />
                   — Honesti
                 </span>
@@ -194,15 +170,59 @@ const Home = () => {
         initial={{ x: 50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
-        className="w-full md:w-[380px] lg:w-[420px] h-full bg-transparent flex flex-col shrink-0 relative z-20 ml-auto pt-3 md:pt-6 px-5 md:px-5 pb-3 md:pb-6 overflow-hidden"
+        className="w-full md:w-[380px] lg:w-[420px] h-full bg-transparent flex flex-col shrink-0 relative z-20 ml-auto pt-6 px-5 pb-6 overflow-hidden"
       >
-        <div className="flex flex-col gap-5 md:gap-4 h-full">
+        <div className="flex flex-col gap-4 h-full">
           
           {/* GROUP 1: Clean Greeting Header */}
-          <div className="shrink-0 self-start bg-black/40 backdrop-blur-md rounded-xl px-5 md:px-4 py-2 md:py-2 border border-white/5 shadow-lg ml-1 md:ml-2 mt-1 md:mt-2">
-            <h2 className="text-[15px] md:text-2xl font-serif text-white font-medium tracking-tight drop-shadow-md">
-              {greeting}, {userProfile?.firstName || 'User'}.
+          <div className="shrink-0 self-start bg-black/40 backdrop-blur-md rounded-xl px-4 py-2 border border-white/5 shadow-lg ml-2 mt-2">
+            <h2 className="text-[20px] font-serif text-white font-medium tracking-tight drop-shadow-md">
+              {greeting}, Maya.
             </h2>
+          </div>
+
+          {/* GROUP 2: Notifications List (Scrollable & Animated) */}
+          <div className="bg-[#0b0f19]/60 backdrop-blur-md border border-white/10 rounded-3xl p-4 shadow-lg flex flex-col flex-1 overflow-hidden">
+            <div className="flex justify-between items-center mb-3 px-1 shrink-0">
+              <h4 className="text-xs font-bold text-white tracking-wide drop-shadow-md flex items-center gap-2">
+                Recent Updates
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+              </h4>
+            </div>
+            
+            {/* Scrollable list of context items with layout animations */}
+            <div className="flex-1 overflow-y-auto overflow-x-hidden pr-2 flex flex-col custom-scrollbar">
+              <AnimatePresence initial={false}>
+                {activeNotifications.map((note) => (
+                  <motion.div 
+                    key={note.id} 
+                    layout
+                    initial={{ opacity: 0, x: -30, scale: 0.95, height: 0, marginBottom: 0 }}
+                    animate={{ opacity: 1, x: 0, scale: 1, height: 'auto', marginBottom: 10 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="bg-[#0b0f19]/70 hover:bg-[#0b0f19]/90 border border-white/10 rounded-xl p-3 flex gap-3 transition-colors cursor-default shadow-md shrink-0"
+                  >
+                    <div className={`mt-0.5 text-lg shrink-0 ${
+                      note.type === 'warning' ? 'text-amber-400' :
+                      note.type === 'success' ? 'text-emerald-400' :
+                      'text-blue-400'
+                    }`}>
+                      {note.icon}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start">
+                        <h5 className="text-[11px] font-bold text-white leading-tight">{note.title}</h5>
+                        <span className="text-[9px] text-gray-400 font-medium whitespace-nowrap ml-2">{note.time}</span>
+                      </div>
+                      <p className="text-[10px] text-gray-300 mt-1.5 leading-snug font-medium drop-shadow-sm">{note.message}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* GROUP 3: Highly Futuristic Attention-Seeking Chat Button */}
@@ -224,7 +244,7 @@ const Home = () => {
               <div className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_0%,#00000000_20%,#ff6600_40%,#0077ff_60%,#00000000_100%)] opacity-90 group-hover:opacity-100 transition-opacity"></div>
               
               {/* Inner Button Core with glass sheen */}
-              <div className="relative bg-[#0b0f19] rounded-full px-5 py-2 md:px-7 md:py-3.5 flex items-center justify-center gap-3 md:gap-5 border border-white/10 overflow-hidden group-hover:bg-[#0b0f19]/90 transition-colors">
+              <div className="relative bg-[#0b0f19] rounded-full px-7 py-3.5 flex items-center justify-center gap-3 border border-white/10 overflow-hidden group-hover:bg-[#0b0f19]/90 transition-colors">
                 
                 {/* Sweeping Light reflection using Framer Motion */}
                 <motion.div 
@@ -234,62 +254,18 @@ const Home = () => {
                 />
 
                 {/* Blinking Live Indicator */}
-                <div className="relative flex items-center justify-center w-2.5 h-2.5 md:w-4 md:h-3">
+                <div className="relative flex items-center justify-center w-3 h-3">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[#ff6600] animate-ping opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-[#ff6600] shadow-[0_0_12px_#ff6600]"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#ff6600] shadow-[0_0_12px_#ff6600]"></span>
                 </div>
                 
                 {/* High-contrast Text */}
-                <span className="z-10 bg-gradient-to-r from-blue-200 via-white to-orange-300 bg-clip-text text-transparent uppercase tracking-[0.15em] md:tracking-[0.25em] font-black text-[15px] md:text-base drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                <span className="z-10 bg-gradient-to-r from-blue-200 via-white to-orange-300 bg-clip-text text-transparent uppercase tracking-[0.25em] font-black text-[12px] drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
                   Engage Honesti
                 </span>
               </div>
             </button>
           </motion.div>
-
-          {/* GROUP 2: Notifications List (Scrollable & Animated) */}
-          <div className="bg-[#0b0f19]/60 backdrop-blur-md border border-white/10 rounded-3xl p-5 md:p-4 shadow-lg flex flex-col flex-1 overflow-hidden">
-            <div className="flex justify-between items-center mb-5 px-1 shrink-0">
-              <h4 className="text-xs font-bold text-white tracking-wide drop-shadow-md flex items-center gap-2">
-                Recent Updates
-                <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-              </h4>
-            </div>
-            
-            {/* Scrollable list of context items with layout animations */}
-            <div className="flex-1 overflow-y-auto overflow-x-hidden pr-2 flex flex-col custom-scrollbar">
-              <AnimatePresence initial={false}>
-                {activeNotifications.map((note) => (
-                  <motion.div 
-                    key={note.id} 
-                    layout
-                    initial={{ opacity: 0, x: -30, scale: 0.95, height: 0, marginBottom: 0 }}
-                    animate={{ opacity: 1, x: 0, scale: 1, height: 'auto', marginBottom: 6 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className="bg-[#0b0f19]/70 hover:bg-[#0b0f19]/90 border border-white/10 rounded-lg md:rounded-xl p-4 md:p-5 flex gap-4 md:gap-5 transition-colors cursor-default shadow-md shrink-0"
-                  >
-                    <div className={`mt-0.5 text-base md:text-lg shrink-0 ${
-                      note.type === 'warning' ? 'text-amber-400' :
-                      note.type === 'success' ? 'text-emerald-400' :
-                      'text-blue-400'
-                    }`}>
-                      {note.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start">
-                        <h5 className="text-[15px] md:text-base font-bold text-white leading-tight">{note.title}</h5>
-                        <span className="text-[15px] md:text-base text-gray-400 font-medium whitespace-nowrap ml-2">{note.time}</span>
-                      </div>
-                      <p className="text-base md:text-[15px] text-gray-300 mt-1 md:mt-1.5 leading-snug font-medium drop-shadow-sm">{note.message}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </div>
 
         </div>
       </motion.div>
@@ -298,4 +274,3 @@ const Home = () => {
 };
 
 export default Home;
-
