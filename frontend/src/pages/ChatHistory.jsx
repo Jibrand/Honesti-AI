@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSend, FiCommand, FiCheckCircle, FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -282,9 +282,6 @@ const ChatHistory = () => {
     <div className="flex-1 flex flex-col h-full w-full relative overflow-hidden bg-transparent text-gray-200">
       <div className="md:hidden absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-[#00E5FF]/30 to-transparent z-30 pointer-events-none mix-blend-screen blur-[1px]"></div>
 
-
-
-
       <div className="relative z-10 flex-1 overflow-y-auto scrollbar-hide px-4 pt-4 pb-[130px]">
         <div className="max-w-2xl mx-auto space-y-6 md:space-y-8">
           <AnimatePresence>
@@ -348,8 +345,8 @@ const ChatHistory = () => {
                           <div className="p-3">
                             <div className="flex items-center gap-2 mb-2">
                               <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded text-white tracking-wider ${msg.action.method === 'POST' ? 'bg-emerald-600/80' :
-                                  msg.action.method === 'PUT' ? 'bg-[#0077ff]/80' :
-                                    'bg-purple-600/80'
+                                msg.action.method === 'PUT' ? 'bg-[#0077ff]/80' :
+                                  'bg-purple-600/80'
                                 }`}>
                                 {msg.action.method}
                               </span>
