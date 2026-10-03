@@ -30,9 +30,9 @@ const Onboarding = () => {
   };
 
   return (
-    <div ref={scrollRef} className="min-h-screen w-full flex flex-col items-center justify-center bg-[#0b0f19] p-4 font-sans overflow-y-auto custom-scrollbar">
+    <div ref={scrollRef} className="min-h-[100dvh] w-full flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center bg-[#0b0f19] p-4 font-sans overflow-y-auto custom-scrollbar">
       
-      <Logo className="mb-8 md:mb-12" />
+      <Logo className="mb-4 md:mb-12 mt-4 md:mt-0" />
 
       {/* Main Card Container */}
       <motion.div 
